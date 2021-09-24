@@ -812,39 +812,6 @@ ul.filter li.filter-active
 	color: #fff;
 }
 
-input,textarea
-{
-	width: 100%;
-	background-color: rgba(0,0,0,0);
-	color: #ddd;
-	border: 1px solid #ddd;
-	margin-bottom: 40px;
-}
-
-input:not([type="submit"])
-{
-	height: 40px;
-	line-height: 40px;
-	padding-left: 20px;
-}
-
-textarea
-{
-	padding-top: 10px;
-	padding-left: 20px;
-}
-
-#submit
-{
-	width: auto;
-	max-width: 50%;
-	padding: 8px 60px;
-	border: none;
-	color: #fff;
-	background-color: #e84118;
-	cursor: pointer;
-}
-
 .contact i.fa
 {
 	margin-right: 15px;
@@ -860,4 +827,21 @@ footer
 	background-color: #e84118;
 }
 
+/*-----------------Footer-----------------*/
+.footer{
+	width: 100%;
+	text-align: center;
+	padding: 10px 0;
 
+}
+
+.icons .fa{
+	color: #f44336;
+	margin: 0 10px;
+	cursor: pointer;
+	padding: 5px 0;
+}
+
+.fa-heart-o{
+	color: #f44336;
+}
