@@ -11,12 +11,12 @@
 		background-color: rgba(0,0,0,0.7);
 	}
 
-	.services-content .row .col-lg-4
+	.skills-content .row .col-lg-4
 	{
 		margin-top: 60px;
 	}
 
-	.services-content .row .col-lg-4:nth-child(1)
+	.skills-content .row .col-lg-4:nth-child(1)
 	{
 		margin-top: 0;
 	}
