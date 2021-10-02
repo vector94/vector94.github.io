@@ -773,6 +773,88 @@ ul.filter li.filter-active
 }
 
 
+/** project styles **/
+
+.project .section-header
+{
+	margin-bottom: 60px;
+}
+
+.project-image
+{
+	width: 100%;
+	height: 250px;
+	position: relative;
+	overflow: hidden;
+}
+
+.project-image img
+{
+	width: 100%;
+	height: 100%;
+	transform:scale(1);
+	transition:all 0.5s ease;
+}
+
+.project-image .project-category
+{
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	color: #fff;
+	background-color: #e84118;
+	padding: 5px 20px;
+	font-size: 13px;
+	font-weight: bold;
+	border-radius: 20px;
+}
+
+.project-name
+{
+	margin-top: 30px;
+	margin-bottom: 10px;
+	padding-left: 20px;
+}
+
+.project-content
+{
+	margin-top: 20px;
+	padding-top: 0;
+	padding-bottom: 20px;
+	padding-right: 20px;
+	padding-left: 20px;
+}
+
+.tech-used
+{
+	font-weight: bold;
+	color: #e84118;
+	margin-right: 10px;
+}
+
+.project-date
+{
+	color: #333;
+	font-weight: bold;
+	margin-left: 15px;
+}
+
+.project-details
+{
+	padding-left: 20px;
+}
+
+.project-inner
+{
+	border:1px solid #ddd;
+}
+
+.project-content:hover .project-image img
+{
+	transform:scale(1.2);
+}
+
+
 /** contact styles **/
 
 .contact
@@ -818,30 +900,25 @@ ul.filter li.filter-active
 }
 
 
-footer
-{
-	height: 40px;
-	line-height: 40px;
-	width: 100%;
-	color: #fff;
-	background-color: #e84118;
-}
-
 /*-----------------Footer-----------------*/
 .footer{
 	width: 100%;
 	text-align: center;
-	padding: 10px 0;
+	padding: 1px 0;
+	background-color: #e84118;
+}
 
+.footer p{
+	color: white;
 }
 
 .icons .fa{
-	color: #f44336;
+	color: #B2BEB5;
 	margin: 0 10px;
 	cursor: pointer;
 	padding: 5px 0;
 }
 
 .fa-heart-o{
-	color: #f44336;
+	color: #fff;
 }
