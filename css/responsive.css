@@ -26,7 +26,7 @@
 		font-size: 40px;
 	}
 
-	.post-image
+	.project-image
 	{
 		height: 400px;
 	}
@@ -44,14 +44,14 @@
 		text-align: center;
 	}
 
-	.post-image
+	.project-image
 	{
 		height: 350px;
 	}
 }
 
 @media screen and (max-width: 600px){
-	.post-image
+	.project-image
 	{
 		height: 300px;
 	}
@@ -65,7 +65,7 @@
 }
 
 @media screen and (max-width: 450px){
-	.post-image
+	.project-image
 	{
 		height: 250px;
 	}
