@@ -11,7 +11,7 @@ doc.ready(function(){
 	$(window).scrollTop(0);
 
 	var typed = new Typed(".mytext", {
-	  strings: ["Asif Ahmed", "a CS Student", "a Competitive Programmer"],
+	  strings: ["Asif Ahmed", "a Software Engineer", "a Competitive Programmer"],
 	  smartBackspace: true, // Default value
 	  loop:true,
 	  backDelay: 1000,
