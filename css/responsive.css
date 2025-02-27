@@ -1,72 +1,68 @@
-@media screen and (max-width: 991px){
-
-	.navbar-nav li.nav-item
-	{
-		margin:15px 0;
-		text-align: center;
-	}
-
-	.navbar-nav-bg
-	{
-		background-color: rgba(0,0,0,0.7);
-	}
-
-	.skills-content .row .col-lg-4
-	{
-		margin-top: 60px;
-	}
-
-	.skills-content .row .col-lg-4:nth-child(1)
-	{
-		margin-top: 0;
-	}
-
-	.main .type
-	{
-		font-size: 40px;
-	}
-
-	.project-image
-	{
-		height: 400px;
-	}
+header {
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    transition: background 0.3s ease;
 }
 
-@media screen and (max-width: 767px){
-
-	.about .col-md-7
-	{
-		margin-top: 60px;
-	}
-
-	.education, .experience, .about .col-md-7,.skills
-	{
-		text-align: center;
-	}
-
-	.project-image
-	{
-		height: 350px;
-	}
+.navbar-nav {
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
-@media screen and (max-width: 600px){
-	.project-image
-	{
-		height: 300px;
-	}
+.nav-link {
+    padding: 10px 15px;
+    color: white;
+    text-decoration: none;
 }
 
-@media screen and (max-width: 500px){
-	.main .type
-	{
-		font-size: 24px;
-	}
+.nav-link:hover {
+    color: #e84118;
 }
 
-@media screen and (max-width: 450px){
-	.project-image
-	{
-		height: 250px;
-	}
+/* Responsive Utilities */
+@media (max-width: 991px) {
+    .navbar-nav {
+        flex-direction: column;
+    }
+
+    .flex {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 767px) {
+    .main-content .type {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 500px) {
+    .main-content .type {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 991px) {
+    .navbar-nav {
+        flex-direction: column;
+    }
+
+    .flex {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 767px) {
+    .main-content .type {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 500px) {
+    .main-content .type {
+        font-size: 24px;
+    }
 }

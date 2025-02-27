@@ -922,3 +922,103 @@ ul.filter li.filter-active
 .fa-heart-o{
 	color: #fff;
 }
+
+
+/* Reset and Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    color: #777;
+    line-height: 1.5;
+}
+
+img, video {
+    max-width: 100%;
+    height: auto;
+}
+
+.loader {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+    color: #333;
+}
+
+p {
+    line-height: 2;
+}
+
+h3 {
+    font-size: clamp(24px, 2vw, 36px);
+}
+
+h5 {
+    font-size: clamp(16px, 1.5vw, 22px);
+}
+
+/* Layout */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+/* Header & Navigation */
+header {
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    transition: background 0.3s ease;
+}
+
+.navbar-nav {
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.nav-link {
+    padding: 10px 15px;
+    color: white;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    color: #e84118;
+}
