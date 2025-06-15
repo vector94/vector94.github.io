@@ -3,38 +3,70 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Vector</title>
+	<meta name="description" content="Md Asif Iqbal Ahmed - Software Engineer & Competitive Programmer Portfolio">
+	<meta name="keywords" content="software engineer, competitive programming, fullstack developer, .NET, Angular">
+	<title>Vector - Software Engineer Portfolio</title>
 
-	<!-- Preload key assets -->
-	<link rel="preload" href="img/logo.png" as="image">
-	<link rel="preload" href="img/loader.gif" as="image">
+	<link rel="preload" href="img/main.jpg" as="image">
+	<link rel="preload" href="css/bootstrap.min.css" as="style">
+	<link rel="preload" href="style.css" as="style">
+	<link rel="preload" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700&display=swap" as="style">
 
-	<!-- Favicon -->
 	<link rel="shortcut icon" type="image" href="img/logo.png">
 
-	<!-- Minified CSS and external libraries -->
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700" rel="stylesheet"> 
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700&display=swap" rel="stylesheet"> 
 	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="css/owl.carousel.min.css">
-	<link rel="stylesheet" type="text/css" href="css/animate.css">
 	<link rel="stylesheet" type="text/css" href="style.css">
-	<link rel="stylesheet" type="text/css" href="css/responsive.css">
 	
-	<!-- Asynchronous script loading to improve performance -->
-	<script type="text/javascript" src="js/respond.js" defer></script>
+	<link rel="preload" href="css/owl.carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<link rel="preload" href="css/animate.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<link rel="preload" href="css/responsive.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<noscript>
+		<link rel="stylesheet" type="text/css" href="css/owl.carousel.min.css">
+		<link rel="stylesheet" type="text/css" href="css/animate.css">
+		<link rel="stylesheet" type="text/css" href="css/responsive.css">
+	</noscript>
+
+	<style>
+		.loader {
+			position: fixed;
+			width: 100%;
+			height: 100vh;
+			top: 0;
+			left: 0;
+			z-index: 1000;
+			background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			transition: opacity 0.3s ease;
+		}
+		.loader::before {
+			content: '';
+			width: 40px;
+			height: 40px;
+			border: 4px solid rgba(255,255,255,0.3);
+			border-left-color: #fff;
+			border-radius: 50%;
+			animation: loaderSpin 1s linear infinite;
+		}
+		@keyframes loaderSpin {
+			to { transform: rotate(360deg); }
+		}
+		.loader img { display: none; }
+		#myparticles { display: none; }
+	</style>
 </head>
 <body>
 
-<div class="loader">
-	<img src="img/loader.gif" alt="loader-image">
-</div>
+<div class="loader"></div>
 
 <header id="header">
 	<div class="container">
 		<div class="row">
 			<nav class="navbar navbar-expand-lg full-width">
-				<a class="navbar-brand animation" href="#" data-animation="fadeInLeft"><img src="img/logo.png" height="10%" width="15%">VECTOR</a>
+				<a class="navbar-brand animation" href="#" data-animation="fadeInLeft"><img src="img/logo.png" height="10%" width="15%" alt="Vector Logo">VECTOR</a>
 				<button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="ToggleNavigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
@@ -48,73 +80,63 @@
 						<li class="nav-item"><a href="#contact" class="nav-link">CONTACT</a></li>
 					</ul>
 				</div>
-				
 			</nav>
 		</div>
 	</div>
 </header>
 
 <section class="main d-flex justify-content-center" id="main">
-
-
 	<div id="myparticles"></div>
 
 	<div class="main-content align-self-center">
 		<div class="welcome">Welcome</div>
 		<div class="type">I am <span class="mytext"></span></div>
 		<div class="social-icons">
-			<a href="https://www.facebook.com/asif.ahmed181/"><i class="fa fa-facebook"></i></a>
-			<a href="https://www.linkedin.com/in/vector94/"><i class="fa fa-linkedin"></i></a>
-			<a href="https://github.com/vector94"><i class="fa fa-github"></i></a>
-			<a href="https://www.instagram.com/asif.ahmed97"><i class="fa fa-instagram"></i></a>
-			<a href="https://wa.link/5srvtl"><i class="fa fa-whatsapp"></i></a>
-			<a href="https://t.me/vector944"><i class="fa fa-telegram"></i></a>
+			<a href="https://www.facebook.com/asif.ahmed181/" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+			<a href="https://www.linkedin.com/in/vector94/" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a>
+			<a href="https://github.com/vector94" aria-label="GitHub"><i class="fa fa-github"></i></a>
+			<a href="https://www.instagram.com/asif.ahmed97" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
+			<a href="https://wa.link/5srvtl" aria-label="WhatsApp"><i class="fa fa-whatsapp"></i></a>
+			<a href="https://t.me/vector944" aria-label="Telegram"><i class="fa fa-telegram"></i></a>
 		</div>
 
-		<a class="cta cta-portfolio" href="#">Portfolio</a>
+		<a class="cta cta-portfolio" href="#portfolio">Portfolio</a>
 		<a class="cta cta-contact" href="#contact">Contact</a>
 	</div>
 
 	<svg viewBox="0 0 1400 100" class="svg-bottom">
-		<polygon points="0,0 200,100 1200,100 1400,0 1400,100 0,100 0,0" style="fill:white";>
+		<polygon points="0,0 200,100 1200,100 1400,0 1400,100 0,100 0,0" style="fill:white"></polygon>
 	</svg>
-	
 </section>
 
-
-<!-- about section -->
 <section class="section-padding about" id="about">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-5">
-				<img src="img/about.jpg" class="img-fluid animation" alt="about image" data-animation="zoomIn">
+				<img src="img/about.jpg" class="img-fluid animation" alt="About Me Image" data-animation="zoomIn">
 			</div>
 			<div class="col-md-7 animation" data-animation="fadeInRight">
 				<h3> About Me </h3>
 				<h5>Software Engineer | Competitive Programmer | Fitness Enthusiast</h5>
 				<p>I am a Software Engineer with expertise in Fullstack .NET Development and a passion for exploring new technologies. I am committed to continuous learning, always eager to acquire new skills to stay ahead in the fast-evolving tech world.</p>
 				<p>During my university days, I participated in numerous onsite and online programming contests, solving over 2000 problems across various online judges.</p>
-				<p>Outside of work, I enjoy traveling, and playing online games with friends. Recently, I’ve also become a fitness enthusiast, focusing on maintaining a balanced lifestyle through regular workouts.</p>
+				<p>Outside of work, I enjoy traveling, and playing online games with friends. Recently, I've also become a fitness enthusiast, focusing on maintaining a balanced lifestyle through regular workouts.</p>
 				<div class="about-social-icons">
-					<a href="https://www.facebook.com/asif.ahmed181/"><i class="fa fa-facebook"></i></a>
-					<a href="https://github.com/vector94"><i class="fa fa-github"></i></a>
-					<a href="https://t.me/vector944"><i class="fa fa-telegram"></i></a>
-					<a href="https://www.linkedin.com/in/vector94/"><i class="fa fa-linkedin"></i></a>
+					<a href="https://www.facebook.com/asif.ahmed181/" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+					<a href="https://github.com/vector94" aria-label="GitHub"><i class="fa fa-github"></i></a>
+					<a href="https://t.me/vector944" aria-label="Telegram"><i class="fa fa-telegram"></i></a>
+					<a href="https://www.linkedin.com/in/vector94/" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a>
 				</div>
 
 				<a class="about-contact" href="#contact">Contact Me</a>
 			</div>
 		</div>
 	</div>
-	
 </section>
 
-<!-- exp-skills -->
-
 <section class="section-padding exp-skills">
-
 	<svg viewBox="0 0 1400 100" class="svg-top">
-		<polygon points="0,100 200,0 1200,0 1400,100 1400,0 0,0 0,100" style="fill:white";>
+		<polygon points="0,100 200,0 1200,0 1400,100 1400,0 0,0 0,100" style="fill:white"></polygon>
 	</svg>
 
 	<div class="container">
@@ -126,7 +148,7 @@
 				
 				<ul>
 					<li>
-						<h5>Computer Science and Enginnering</h5>
+						<h5>Computer Science and Engineering</h5>
 						<h6><em>Feb. 2018 - May 2022</em></h6>
 						<div><strong>North South University</strong></div>
 					</li>
@@ -140,7 +162,7 @@
 				<ul>
 					<li>
 						<h5>Senior Software Engineer</h5>
-						<h6><em>Jan. 1024 - Present</em></h6>
+						<h6><em>Jan. 2024 - Present</em></h6>
 						<div><strong>Enosis Solutions</strong></div>
 					</li>
 				</ul>
@@ -189,51 +211,15 @@
 					</li>
 				</ul>
 			</div>
-
-			<!-- <div class="col-md-4 skills animation" data-animation="fadeInLeft">
-				<br>
-				<ul>
-					<li>
-						<h6>Problem Solving</h6>
-						<div class="progress-content">
-							<div class="skill-progress" data-progress="90">
-							</div>
-						</div>
-					</li>
-
-					<li>
-						<h6>Algorithm</h6>
-						<div class="progress-content">
-							<div class="skill-progress" data-progress="85">
-							</div>
-						</div>
-					</li>
-
-					<li>
-						<h6>Data Structure</h6>
-						<div class="progress-content">
-							<div class="skill-progress" data-progress="80">
-							</div>
-						</div>
-					</li>
-
-				</ul>
-			</div> -->
-
-
 		</div>
 	</div>
 
 	<svg viewBox="0 0 1400 100" class="svg-bottom">
-		<polygon points="0,0 200,100 1200,100 1400,0 1400,100 0,100 0,0" style="fill:white";>
+		<polygon points="0,0 200,100 1200,100 1400,0 1400,100 0,100 0,0" style="fill:white"></polygon>
 	</svg>
-
 </section>
 
-<!-- Skills section -->
-
 <section class="skills section-padding" id="skills">
-
 	<div class="container">
 		<div class="row">
 			<div class="section-header text-center full-width">
@@ -274,14 +260,11 @@
 			</div>
 		</div>
 	</div>
-	
 </section>
-
-<!-- portfolio section -->
 
 <section class="section-padding portfolio animation" id="portfolio" data-animation="fadeInUp">
 	<svg viewBox="0 0 1400 100" class="svg-top">
-		<polygon points="0,100 200,0 1200,0 1400,100 1400,0 0,0 0,100" style="fill:white";>
+		<polygon points="0,100 200,0 1200,0 1400,100 1400,0 0,0 0,100" style="fill:white"></polygon>
 	</svg>
 	<div class="container">
 		<div class="row">
@@ -296,7 +279,6 @@
 				<li data-filter=".fitness">Fitness</li>
 				<li data-filter=".travel">Travel</li>
 				<li data-filter=".gaming">Gaming</li>
-				
 			</ul>
 		</div>
 		<div class="portfolio-container">
@@ -304,7 +286,7 @@
 				
 				<div class="portfolio-item col-md-3 programming-contest">
 					<div class="item-content text-center">
-						<img src="img/portfolio/IEEE Power Buzz Programming Contest.jpg" class="img-fluid" alt="portfolio-image">
+						<img src="img/portfolio/IEEE Power Buzz Programming Contest.jpg" class="img-fluid" alt="IEEE Power Buzz Programming Contest">
 						<div class="img-overlay d-flex align-items-center">
 							<div class="info full-width">
 								<div class="description">IEEE Power Buzz Programming Contest</div>
@@ -316,7 +298,7 @@
 
 				<div class="portfolio-item col-md-3 programming-contest">
 					<div class="item-content text-center">
-						<img src="img/portfolio/SUST Intra University Programming Contest.jpg" class="img-fluid" alt="portfolio-image">
+						<img src="img/portfolio/SUST Intra University Programming Contest.jpg" class="img-fluid" alt="SUST Intra University Programming Contest">
 						<div class="img-overlay d-flex align-items-center">
 							<div class="info full-width">
 								<div class="description">SUST Intra University Programming Contest</div>
@@ -328,7 +310,7 @@
 
 				<div class="portfolio-item col-md-6 programming-contest">
 					<div class="item-content text-center">
-						<img src="img/portfolio/Intra NSU Programming Contest.jpg" class="img-fluid" alt="portfolio-image">
+						<img src="img/portfolio/Intra NSU Programming Contest.jpg" class="img-fluid" alt="Intra NSU Programming Contest">
 						<div class="img-overlay d-flex align-items-center">
 							<div class="info full-width">
 								<div class="description">Intra NSU Programming Contest</div>
@@ -340,7 +322,7 @@
 
 				<div class="portfolio-item col-md-6 programming-contest">
 					<div class="item-content text-center">
-						<img src="img/portfolio/SUB Intra University Programming Contest.jpg" class="img-fluid" alt="portfolio-image">
+						<img src="img/portfolio/SUB Intra University Programming Contest.jpg" class="img-fluid" alt="SUB Intra University Programming Contest">
 						<div class="img-overlay d-flex align-items-center">
 							<div class="info full-width">
 								<div class="description">SUB Intra University Programming Contest</div>
@@ -352,7 +334,7 @@
 
 				<div class="portfolio-item col-md-3 gaming">
 					<div class="item-content text-center">
-						<img src="img/portfolio/Sentinels Custom Jersey.jpg" class="img-fluid" alt="portfolio-image">
+						<img src="img/portfolio/Sentinels Custom Jersey.jpg" class="img-fluid" alt="Sentinels Custom Jersey">
 						<div class="img-overlay d-flex align-items-center">
 							<div class="info full-width">
 								<div class="description">Sentinels Custom Jersey</div>
@@ -364,7 +346,7 @@
 
 				<div class="portfolio-item col-md-3 programming-contest">
 					<div class="item-content text-center">
-						<img src="img/portfolio/International Collegiate Programming Contest Dhaka Regional.jpg" class="img-fluid" alt="portfolio-image">
+						<img src="img/portfolio/International Collegiate Programming Contest Dhaka Regional.jpg" class="img-fluid" alt="International Collegiate Programming Contest Dhaka Regional">
 						<div class="img-overlay d-flex align-items-center">
 							<div class="info full-width">
 								<div class="description">International Collegiate Programming Contest Dhaka Regional</div>
@@ -376,7 +358,7 @@
 
 				<div class="portfolio-item col-md-6 programming-contest">
 					<div class="item-content text-center">
-						<img src="img/portfolio/National Collegiate Programming Contest.jpg" class="img-fluid" alt="portfolio-image">
+						<img src="img/portfolio/National Collegiate Programming Contest.jpg" class="img-fluid" alt="National Collegiate Programming Contest">
 						<div class="img-overlay d-flex align-items-center">
 							<div class="info full-width">
 								<div class="description">National Collegiate Programming Contest</div>
@@ -388,7 +370,7 @@
 
 				<div class="portfolio-item col-md-3 programming-contest">
 					<div class="item-content text-center">
-						<img src="img/portfolio/Intra NSU Programming Contest (2).jpg" class="img-fluid" alt="portfolio-image">
+						<img src="img/portfolio/Intra NSU Programming Contest (2).jpg" class="img-fluid" alt="Intra NSU Programming Contest">
 						<div class="img-overlay d-flex align-items-center">
 							<div class="info full-width">
 								<div class="description">Intra NSU Programming Contest</div>
@@ -400,7 +382,7 @@
 
 				<div class="portfolio-item col-md-3 programming-contest">
 					<div class="item-content text-center">
-						<img src="img/portfolio/Expert, Codeforces.png" class="img-fluid" alt="portfolio-image">
+						<img src="img/portfolio/Expert, Codeforces.png" class="img-fluid" alt="Expert, Codeforces">
 						<div class="img-overlay d-flex align-items-center">
 							<div class="info full-width">
 								<div class="description">Expert, Codeforces</div>
@@ -412,7 +394,7 @@
 
 				<div class="portfolio-item col-md-3 programming-contest">
 					<div class="item-content text-center">
-						<img src="img/portfolio/SUST Intra University Programming Contest (2).jpg" class="img-fluid" alt="portfolio-image">
+						<img src="img/portfolio/SUST Intra University Programming Contest (2).jpg" class="img-fluid" alt="SUST Intra University Programming Contest">
 						<div class="img-overlay d-flex align-items-center">
 							<div class="info full-width">
 								<div class="description">SUST Intra University Programming Contest</div>
@@ -424,7 +406,7 @@
 
 				<div class="portfolio-item col-md-3 programming-contest">
 					<div class="item-content text-center">
-						<img src="img/portfolio/BUP Intra University Programming Contest.jpg" class="img-fluid" alt="portfolio-image">
+						<img src="img/portfolio/BUP Intra University Programming Contest.jpg" class="img-fluid" alt="BUP Intra University Programming Contest">
 						<div class="img-overlay d-flex align-items-center">
 							<div class="info full-width">
 								<div class="description">BUP Intra University Programming Contest</div>
@@ -439,13 +421,9 @@
 	</div>
 
 	<svg viewBox="0 0 1400 100" class="svg-bottom">
-			<polygon points="0,0 200,100 1200,100 1400,0 1400,100 0,100 0,0" style="fill:white";>
+			<polygon points="0,0 200,100 1200,100 1400,0 1400,100 0,100 0,0" style="fill:white"></polygon>
 	</svg>
-	
 </section>
-
-
-<!-- project section -->
 
 <section class="section-padding project" id="project">
 	<div class="container">
@@ -460,7 +438,7 @@
 				<div class="project-inner">
 					<a href="https://github.com/vector94/Vcoders">
 						<div class="project-image">
-							<img src="img/project/vcoder.png" alt="project image">
+							<img src="img/project/vcoder.png" alt="Vcoders Project">
 							<div class="project-category">
 								<div>Web</div>
 							</div>
@@ -483,12 +461,11 @@
 				</div>
 			</div>
 
-
 			<div class="project-content col-lg-4 animation" data-animation="fadeInLeft">
 				<div class="project-inner">
 					<a href="https://github.com/vector94/Vtech">
 						<div class="project-image">
-							<img src="img/project/vtech.png" alt="project image">
+							<img src="img/project/vtech.png" alt="Vtech Project">
 							<div class="project-category">
 								<div>Web</div>
 							</div>
@@ -515,14 +492,14 @@
 				<div class="project-inner">
 					<a href="https://github.com/vector94/vector94.github.io">
 						<div class="project-image">
-							<img src="img/project/vector94.png" alt="project image">
+							<img src="img/project/vector94.png" alt="Personal Portfolio Website">
 							<div class="project-category">
 								<div>Web Design</div>
 							</div>
 						</div>
 					</a>
 					<div class="project-name">
-						<h5>Personal Prortfolio Website</h5>
+						<h5>Personal Portfolio Website</h5>
 					</div>
 
 					<div class="project-details">
@@ -538,28 +515,22 @@
 			</div>
 		</div>
 	</div>
-	
 </section>
 
-<!-- contact -->
-
 <section class="section-padding contact" id="contact" >
-
 	<svg viewBox="0 0 1400 100" class="svg-top">
-		<polygon points="0,100 200,0 1200,0 1400,100 1400,0 0,0 0,100" style="fill:white";>
+		<polygon points="0,100 200,0 1200,0 1400,100 1400,0 0,0 0,100" style="fill:white"></polygon>
 	</svg>
 
 	<div class="container">
 		<div class="section-header full-width text-center">
 			<div class="row">
-
 				<div class="col-md-12">
 					<h3>Contact</h3>
 				</div>
 			</div>
 		</div>
 
-		
 		<div class="contact-top text-center animation" data-animation="zoomIn">
 			<div class="row">
 				<div class="col-md-4">
@@ -578,41 +549,83 @@
 				</div>
 			</div>
 		</div>
-		
 	</div>
-	
 </section>
 
-<!-- Footer -->
 <section class="footer">
 	<p>Copyright © 2021 All rights reserved. Privacy Policy Terms and Condition</p>
 	<div class="icons">
-		<a href="https://www.facebook.com/asif.ahmed181/"><i class="fa fa-facebook"></i></a>
-		<a href="https://github.com/vector94"><i class="fa fa-github"></i></a>
-		<a href="https://t.me/vector944"><i class="fa fa-telegram"></i></a>
-		<a href="https://www.linkedin.com/in/vector94/"><i class="fa fa-linkedin"></i></a>
+		<a href="https://www.facebook.com/asif.ahmed181/" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+		<a href="https://github.com/vector94" aria-label="GitHub"><i class="fa fa-github"></i></a>
+		<a href="https://t.me/vector944" aria-label="Telegram"><i class="fa fa-telegram"></i></a>
+		<a href="https://www.linkedin.com/in/vector94/" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a>
 	</div>
 	<br>
-	</section>
 </section>
 
-
-<!-- JS Files -->
-<script type="text/javascript" src="js/jquery.min.js" defer></script>
-<script type="text/javascript" src="js/bootstrap.min.js" defer></script>
-<script type="text/javascript" src="js/particles.min.js" defer></script>
-<script type="text/javascript" src="js/myparticles.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9" defer></script>
-<script type="text/javascript" src="js/jquery.waypoints.min.js" defer></script>
-<script type="text/javascript" src="js/isotope.js" defer></script>
-<script type="text/javascript" src="js/owl.carousel.min.js" defer></script>
-<script type="text/javascript" src="js/jquery.nav.js" defer></script>
-<script type="text/javascript" src="js/main.js" defer></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 
 <script>
-    $(window).on('load', function() {
-        $('.loader').fadeOut('fast'); // Shortened fade-out time for quicker loading
-    });
+(function() {
+	'use strict';
+	
+	let loaderHidden = false;
+	
+	function hideLoader() {
+		if (loaderHidden) return;
+		loaderHidden = true;
+		
+		const loader = document.querySelector('.loader');
+		if (loader) {
+			loader.style.opacity = '0';
+			setTimeout(function() {
+				loader.style.display = 'none';
+				const particles = document.getElementById('myparticles');
+				if (particles) {
+					particles.style.display = 'block';
+				}
+			}, 300);
+		}
+	}
+	
+	document.addEventListener('DOMContentLoaded', function() {
+		setTimeout(hideLoader, 1000);
+	});
+	
+	window.addEventListener('load', hideLoader);
+	setTimeout(hideLoader, 2000);
+	
+	['click', 'scroll', 'keydown', 'touchstart'].forEach(event => {
+		document.addEventListener(event, function() {
+			setTimeout(hideLoader, 500);
+		}, { once: true });
+	});
+})();
+</script>
+
+<script>
+window.addEventListener('load', function() {
+	const scripts = [
+		'js/particles.min.js',
+		'js/myparticles.js',
+		'https://cdn.jsdelivr.net/npm/typed.js@2.0.9',
+		'js/jquery.waypoints.min.js',
+		'js/isotope.js',
+		'js/owl.carousel.min.js',
+		'js/jquery.nav.js',
+		'js/main.js'
+	];
+	
+	scripts.forEach((src, index) => {
+		setTimeout(() => {
+			const script = document.createElement('script');
+			script.src = src;
+			script.defer = true;
+			document.body.appendChild(script);
+		}, index * 100);
+	});
+});
 </script>
 
 </body>
