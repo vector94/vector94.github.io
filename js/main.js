@@ -69,19 +69,6 @@ doc.ready(function () {
     });
   }
 
-  function initializeProgressBars() {
-    $(".progress-content .skill-progress").each(function () {
-      var waypoint = new Waypoint({
-        element: this,
-        handler: function (direction) {
-          var value = $(this.element).attr("data-progress");
-          $(this.element).css("width", "" + value + "%");
-        },
-        offset: "70%",
-      });
-    });
-  }
-
   function initializeAnimations() {
     $(".animation").each(function () {
       var waypoint = new Waypoint({
@@ -125,37 +112,36 @@ doc.ready(function () {
     }
   }
 
-  function initializeCarousel() {
-    try {
-      if ($.fn.owlCarousel && $(".testimonial-container").length) {
-        $(".testimonial-container").owlCarousel({
-          items: 1,
-          autoplay: true,
-          rewind: true,
-        });
-      }
-    } catch (error) {
-      console.warn("Carousel initialization failed");
-    }
+  function initializeVideoPlayback() {
+    $(".portfolio-item video").each(function () {
+      var video = this;
+      $(this).closest(".portfolio-item").on("mouseenter", function () {
+        video.play();
+      }).on("mouseleave", function () {
+        video.pause();
+      });
+
+      $(this).on("click", function () {
+        if (video.requestFullscreen) {
+          video.requestFullscreen();
+        } else if (video.webkitRequestFullscreen) {
+          video.webkitRequestFullscreen();
+        }
+      });
+    });
   }
 
   setTimeout(initializeTyped, 100);
   setTimeout(initializeNavigation, 200);
   setTimeout(initializeScrollHandlers, 300);
   setTimeout(initializePortfolio, 400);
+  setTimeout(initializeVideoPlayback, 500);
 
   setTimeout(function () {
     if (typeof Waypoint !== "undefined") {
-      initializeProgressBars();
       initializeAnimations();
     } else {
       $(".animation").css("opacity", "1");
-      $(".skill-progress").each(function () {
-        var value = $(this).attr("data-progress");
-        $(this).css("width", value + "%");
-      });
     }
   }, 500);
-
-  setTimeout(initializeCarousel, 600);
 });
