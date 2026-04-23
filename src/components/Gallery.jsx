@@ -13,14 +13,14 @@ const ITEMS = [
   { id: 9,  cat: 'programming-contest', img: '/img/portfolio/Knight, LeetCode.png',                                       label: 'Knight — LeetCode' },
   { id: 10, cat: 'programming-contest', img: '/img/portfolio/SUST Intra University Programming Contest (2).jpg',          label: 'SUST Intra University Programming Contest' },
   { id: 11, cat: 'programming-contest', img: '/img/portfolio/BUP Intra University Programming Contest.jpg',               label: 'BUP Intra University Programming Contest' },
-  { id: 12, cat: 'powerlifting',        video: '/video/squat_160kg.mov',    label: 'Squat 160kg' },
-  { id: 13, cat: 'powerlifting',        video: '/video/deadlift_200kg.mov', label: 'Deadlift 200kg' },
+  // { id: 12, cat: 'powerlifting', video: '/video/squat_160kg.mov',    label: 'Squat 160kg' },
+  // { id: 13, cat: 'powerlifting', video: '/video/deadlift_200kg.mov', label: 'Deadlift 200kg' },
 ]
 
 const FILTERS = [
   { label: 'All',                  value: 'all' },
   { label: 'Programming Contests', value: 'programming-contest' },
-  { label: 'Powerlifting',         value: 'powerlifting' },
+  // { label: 'Powerlifting', value: 'powerlifting' },
 ]
 
 export default function Gallery() {
@@ -62,42 +62,40 @@ export default function Gallery() {
           ))}
         </div>
 
-        <motion.div className="gallery-grid" layout>
-          <AnimatePresence mode="popLayout">
+        <div className="gallery-masonry">
+          <AnimatePresence>
             {visible.map(item => (
               <motion.div
                 key={item.id}
-                className="gallery-card glass"
-                layout
-                initial={{ opacity: 0, scale: 0.85 }}
+                className="gallery-masonry-item glass"
+                initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.85 }}
-                transition={{ duration: 0.32 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3 }}
                 onClick={() => !item.video && setLightbox(item)}
                 style={{ cursor: item.video ? 'default' : 'zoom-in' }}
               >
-                <div className="gallery-img-wrap">
-                  {item.video ? (
-                    <video
-                      src={item.video}
-                      muted loop playsInline
-                      preload="metadata"
-                      controls
-                    />
-                  ) : (
-                    <>
-                      <img src={item.img} alt={item.label} loading="lazy" />
-                      <div className="gallery-overlay">
-                        <p>{item.label}</p>
-                        <span className="gallery-zoom"><i className="fa fa-expand" /></span>
-                      </div>
-                    </>
-                  )}
-                </div>
+                {item.video ? (
+                  <video
+                    src={item.video}
+                    muted loop playsInline
+                    preload="metadata"
+                    controls
+                    style={{ width: '100%', height: '100%', display: 'block', objectFit: 'contain', background: '#000', borderRadius: 'inherit' }}
+                  />
+                ) : (
+                  <div className="gallery-img-wrap">
+                    <img src={item.img} alt={item.label} loading="lazy" />
+                    <div className="gallery-overlay">
+                      <p>{item.label}</p>
+                      <span className="gallery-zoom"><i className="fa fa-expand" /></span>
+                    </div>
+                  </div>
+                )}
               </motion.div>
             ))}
           </AnimatePresence>
-        </motion.div>
+        </div>
       </div>
 
       <AnimatePresence>
