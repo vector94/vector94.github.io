@@ -67,6 +67,7 @@ export default function Navbar({ theme, onToggleTheme }) {
             <button className="btn-theme" onClick={onToggleTheme} aria-label="Toggle theme">
               {theme === 'day' ? '☀️' : '🌙'}
             </button>
+            <a href="/assets/Resume_Md Asif Iqbal Ahmed.pdf" download className="btn-classic">Resume</a>
             <a href="classic.html" className="btn-classic">Classic</a>
             <button
               className={`hamburger${mobileOpen ? ' open' : ''}`}

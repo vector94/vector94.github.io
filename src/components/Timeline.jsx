@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion'
+import { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
 
 const COLS = [
   {
@@ -30,6 +31,9 @@ const COLS = [
 ]
 
 function TimelineCol({ icon, title, items, delay }) {
+  const lineRef = useRef()
+  const lineInView = useInView(lineRef, { once: true, margin: '-60px' })
+
   return (
     <motion.div
       className="timeline-col glass"
@@ -41,15 +45,22 @@ function TimelineCol({ icon, title, items, delay }) {
       <div className="timeline-col-title">
         <i className={`fa ${icon}`} /> {title}
       </div>
-      <div className="timeline-items">
+      <div className="timeline-items" ref={lineRef}>
+        <motion.div
+          className="timeline-connector"
+          initial={{ scaleY: 0 }}
+          animate={lineInView ? { scaleY: 1 } : { scaleY: 0 }}
+          transition={{ duration: 1.1, delay: delay + 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
+          style={{ originY: 0 }}
+        />
         {items.map((item, i) => (
           <motion.div
             key={i}
             className="timeline-item"
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -16 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: delay + i * 0.1 }}
+            transition={{ duration: 0.4, delay: delay + 0.4 + i * 0.12 }}
           >
             <div className="timeline-role">{item.role}</div>
             <div className="timeline-date">{item.date}</div>

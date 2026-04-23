@@ -1,4 +1,5 @@
-import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion'
+import { motion } from 'framer-motion'
+import TiltCard from './TiltCard'
 
 const SKILLS = [
   {
@@ -22,33 +23,6 @@ const SKILLS = [
     tags: ['Angular', 'React', 'Next.js', 'JavaScript', 'TypeScript', 'HTML', 'CSS'],
   },
 ]
-
-function TiltCard({ children }) {
-  const x = useMotionValue(0)
-  const y = useMotionValue(0)
-
-  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [12, -12]), { stiffness: 200, damping: 25 })
-  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-12, 12]), { stiffness: 200, damping: 25 })
-
-  function onMouseMove(e) {
-    const rect = e.currentTarget.getBoundingClientRect()
-    x.set((e.clientX - rect.left) / rect.width  - 0.5)
-    y.set((e.clientY - rect.top)  / rect.height - 0.5)
-  }
-
-  function onMouseLeave() { x.set(0); y.set(0) }
-
-  return (
-    <motion.div
-      className="tilt-card-wrapper"
-      style={{ rotateX, rotateY, transformPerspective: 900 }}
-      onMouseMove={onMouseMove}
-      onMouseLeave={onMouseLeave}
-    >
-      {children}
-    </motion.div>
-  )
-}
 
 export default function Skills() {
   return (
@@ -81,8 +55,17 @@ export default function Skills() {
                   </div>
                   <div className="skill-card-title">{skill.title}</div>
                   <div className="skill-tags">
-                    {skill.tags.map(tag => (
-                      <span key={tag} className="skill-tag">{tag}</span>
+                    {skill.tags.map((tag, j) => (
+                      <motion.span
+                        key={tag}
+                        className="skill-tag"
+                        initial={{ opacity: 0, scale: 0.75 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.22, delay: i * 0.1 + j * 0.045 }}
+                      >
+                        {tag}
+                      </motion.span>
                     ))}
                   </div>
                 </div>

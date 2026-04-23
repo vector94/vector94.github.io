@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const ITEMS = [
@@ -25,8 +25,16 @@ const FILTERS = [
 
 export default function Gallery() {
   const [filter, setFilter] = useState('all')
+  const [lightbox, setLightbox] = useState(null)
 
   const visible = ITEMS.filter(item => filter === 'all' || item.cat === filter)
+
+  useEffect(() => {
+    if (!lightbox) return
+    function onKey(e) { if (e.key === 'Escape') setLightbox(null) }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [lightbox])
 
   return (
     <section className="section-wrap gallery-section" id="gallery">
@@ -65,6 +73,8 @@ export default function Gallery() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.85 }}
                 transition={{ duration: 0.32 }}
+                onClick={() => !item.video && setLightbox(item)}
+                style={{ cursor: item.video ? 'default' : 'zoom-in' }}
               >
                 <div className="gallery-img-wrap">
                   {item.video ? (
@@ -77,7 +87,10 @@ export default function Gallery() {
                   ) : (
                     <>
                       <img src={item.img} alt={item.label} loading="lazy" />
-                      <div className="gallery-overlay"><p>{item.label}</p></div>
+                      <div className="gallery-overlay">
+                        <p>{item.label}</p>
+                        <span className="gallery-zoom"><i className="fa fa-expand" /></span>
+                      </div>
                     </>
                   )}
                 </div>
@@ -86,6 +99,34 @@ export default function Gallery() {
           </AnimatePresence>
         </motion.div>
       </div>
+
+      <AnimatePresence>
+        {lightbox && (
+          <motion.div
+            className="lightbox-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.22 }}
+            onClick={() => setLightbox(null)}
+          >
+            <motion.div
+              className="lightbox-inner"
+              initial={{ scale: 0.88, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.88, opacity: 0 }}
+              transition={{ duration: 0.22 }}
+              onClick={e => e.stopPropagation()}
+            >
+              <img src={lightbox.img} alt={lightbox.label} className="lightbox-img" />
+              <p className="lightbox-label">{lightbox.label}</p>
+            </motion.div>
+            <button className="lightbox-close" onClick={() => setLightbox(null)} aria-label="Close">
+              <i className="fa fa-times" />
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   )
 }
