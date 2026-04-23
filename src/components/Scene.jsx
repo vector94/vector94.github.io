@@ -1,28 +1,27 @@
 import { useRef, useMemo } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { Float } from '@react-three/drei'
+import { EffectComposer, Bloom } from '@react-three/postprocessing'
 
 function TorusKnot() {
   return (
     <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.9}>
       <group>
-        {/* Metallic inner surface */}
         <mesh>
           <torusKnotGeometry args={[1, 0.32, 220, 32]} />
           <meshPhysicalMaterial
             color="#7c3aed"
-            emissive="#5b21b6"
-            emissiveIntensity={0.25}
+            emissive="#7c3aed"
+            emissiveIntensity={1.2}
             metalness={0.9}
             roughness={0.08}
             transparent
             opacity={0.93}
           />
         </mesh>
-        {/* Outer cyan wireframe glow */}
         <mesh scale={1.045}>
           <torusKnotGeometry args={[1, 0.32, 220, 32]} />
-          <meshBasicMaterial color="#06b6d4" wireframe transparent opacity={0.2} />
+          <meshBasicMaterial color="#06b6d4" wireframe transparent opacity={0.25} />
         </mesh>
       </group>
     </Float>
@@ -36,7 +35,6 @@ function ParticleField() {
   const positions = useMemo(() => {
     const arr = new Float32Array(count * 3)
     for (let i = 0; i < count; i++) {
-      // Uniform sphere distribution
       const theta = Math.random() * Math.PI * 2
       const phi   = Math.acos(2 * Math.random() - 1)
       const r     = 4 + Math.random() * 14
@@ -55,20 +53,9 @@ function ParticleField() {
   return (
     <points ref={ref}>
       <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          count={count}
-          array={positions}
-          itemSize={3}
-        />
+        <bufferAttribute attach="attributes-position" count={count} array={positions} itemSize={3} />
       </bufferGeometry>
-      <pointsMaterial
-        size={0.065}
-        color="#7c3aed"
-        transparent
-        opacity={0.68}
-        sizeAttenuation
-      />
+      <pointsMaterial size={0.065} color="#7c3aed" transparent opacity={0.68} sizeAttenuation />
     </points>
   )
 }
@@ -92,6 +79,14 @@ export default function Scene() {
       <TorusKnot />
       <ParticleField />
       <CameraRig />
+      <EffectComposer>
+        <Bloom
+          luminanceThreshold={0.2}
+          luminanceSmoothing={0.8}
+          intensity={1.8}
+          mipmapBlur
+        />
+      </EffectComposer>
     </>
   )
 }
