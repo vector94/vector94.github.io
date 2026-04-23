@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import BokehParticles from './BokehParticles'
 
 const ITEMS = [
   { id: 1,  cat: 'programming-contest', img: '/img/portfolio/IEEE Power Buzz Programming Contest.jpg',                     label: 'IEEE Power Buzz Programming Contest' },
@@ -38,13 +39,14 @@ export default function Gallery() {
 
   return (
     <section className="section-wrap gallery-section" id="gallery">
+      <BokehParticles />
       <div className="container">
         <motion.div
           className="section-header"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.9 }}
         >
           <span className="section-tag">Moments</span>
           <h2 className="section-title">My <span>Gallery</span></h2>
@@ -71,7 +73,7 @@ export default function Gallery() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.5 }}
                 onClick={() => !item.video && setLightbox(item)}
                 style={{ cursor: item.video ? 'default' : 'zoom-in' }}
               >

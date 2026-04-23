@@ -1,22 +1,21 @@
-const LINKS = [
-  ['fa-linkedin', 'https://www.linkedin.com/in/md-asif-iqbal-ahmed/', 'LinkedIn'],
-  ['fa-github',   'https://github.com/vector94',                       'GitHub'],
-]
+import { motion } from 'framer-motion'
+import BokehParticles from './BokehParticles'
 
 export default function Footer() {
   return (
     <footer className="footer">
+      <BokehParticles intensity={0.6} />
+      <div className="footer-accent-line" />
       <div className="footer-inner">
-        <span className="footer-text">
+        <motion.span
+          className="footer-text"
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.9 }}
+        >
           © 2021 – 2026 Md Asif Iqbal Ahmed. All rights reserved.
-        </span>
-        <div className="footer-social">
-          {LINKS.map(([icon, href, label]) => (
-            <a key={label} href={href} aria-label={label} target="_blank" rel="noopener">
-              <i className={`fa ${icon}`} />
-            </a>
-          ))}
-        </div>
+        </motion.span>
       </div>
     </footer>
   )

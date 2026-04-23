@@ -39,7 +39,7 @@ function ParticleCanvas() {
 
     function getAccentRgb() {
       const isDay = document.documentElement.getAttribute('data-theme') === 'day'
-      return isDay ? '91,33,182' : '124,58,237'
+      return isDay ? '159,18,57' : '225,29,72'
     }
 
     function draw() {
@@ -92,7 +92,7 @@ export default function Contact() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 1.0 }}
         >
           <span className="section-tag">Say Hello</span>
           <h2 className="contact-heading">
@@ -114,7 +114,7 @@ export default function Contact() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.9, delay: 0.3 }}
         >
           {SOCIALS.map(({ icon, href, label }, i) => (
             <motion.a
@@ -126,7 +126,7 @@ export default function Contact() {
               initial={{ opacity: 0, scale: 0.85 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: 0.3 + i * 0.07 }}
+              transition={{ duration: 0.5, delay: 0.4 + i * 0.12 }}
               whileHover={{ y: -4, scale: 1.05 }}
             >
               <i className={`fa ${icon}`} />

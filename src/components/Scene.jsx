@@ -10,18 +10,18 @@ function TorusKnot() {
         <mesh>
           <torusKnotGeometry args={[1, 0.32, 220, 32]} />
           <meshPhysicalMaterial
-            color="#7c3aed"
-            emissive="#7c3aed"
-            emissiveIntensity={1.2}
+            color="#e11d48"
+            emissive="#e11d48"
+            emissiveIntensity={0.5}
             metalness={0.9}
             roughness={0.08}
             transparent
-            opacity={0.93}
+            opacity={0.85}
           />
         </mesh>
         <mesh scale={1.045}>
           <torusKnotGeometry args={[1, 0.32, 220, 32]} />
-          <meshBasicMaterial color="#06b6d4" wireframe transparent opacity={0.25} />
+          <meshBasicMaterial color="#f97316" wireframe transparent opacity={0.12} />
         </mesh>
       </group>
     </Float>
@@ -55,7 +55,7 @@ function ParticleField() {
       <bufferGeometry>
         <bufferAttribute attach="attributes-position" count={count} array={positions} itemSize={3} />
       </bufferGeometry>
-      <pointsMaterial size={0.065} color="#7c3aed" transparent opacity={0.68} sizeAttenuation />
+      <pointsMaterial size={0.055} color="#e11d48" transparent opacity={0.35} sizeAttenuation />
     </points>
   )
 }
@@ -73,17 +73,17 @@ export default function Scene() {
   return (
     <>
       <ambientLight intensity={0.5} />
-      <pointLight position={[6, 6, 6]}   color="#7c3aed" intensity={4} />
-      <pointLight position={[-6, -6, -6]} color="#06b6d4" intensity={2.5} />
+      <pointLight position={[6, 6, 6]}   color="#e11d48" intensity={2} />
+      <pointLight position={[-6, -6, -6]} color="#f97316" intensity={1.2} />
       <pointLight position={[0, 4, 4]}   color="#ffffff"  intensity={0.6} />
       <TorusKnot />
       <ParticleField />
       <CameraRig />
       <EffectComposer>
         <Bloom
-          luminanceThreshold={0.2}
-          luminanceSmoothing={0.8}
-          intensity={1.8}
+          luminanceThreshold={0.4}
+          luminanceSmoothing={0.9}
+          intensity={0.8}
           mipmapBlur
         />
       </EffectComposer>
