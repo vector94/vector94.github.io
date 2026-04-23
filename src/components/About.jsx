@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from 'react'
 import { motion, useInView, useScroll, useTransform } from 'framer-motion'
+import BokehParticles from './BokehParticles'
 
 function CountUp({ value, duration = 1500 }) {
   const ref = useRef()
@@ -37,6 +38,9 @@ const STATS = [
 const SOCIALS = [
   ['fa-linkedin', 'https://www.linkedin.com/in/md-asif-iqbal-ahmed/', 'LinkedIn'],
   ['fa-github',   'https://github.com/vector94',                       'GitHub'],
+  ['fa-envelope', 'mailto:asif.ahmed9414@gmail.com',                   'Email'],
+  ['fa-whatsapp', 'https://wa.me/46769786257',                         'WhatsApp'],
+  ['fa-phone',    'tel:+46769786257',                                  'Phone'],
 ]
 
 export default function About() {
@@ -46,13 +50,14 @@ export default function About() {
 
   return (
     <section className="section-wrap about-section" id="about" ref={sectionRef}>
+      <BokehParticles />
       <div className="container">
         <motion.div
           className="section-header"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.9 }}
         >
           <span className="section-tag">Who I Am</span>
           <h2 className="section-title">About <span>Me</span></h2>
@@ -64,7 +69,7 @@ export default function About() {
             initial={{ opacity: 0, x: -60 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.75, ease: 'easeOut' }}
+            transition={{ duration: 1.1, ease: 'easeOut' }}
           >
             <div className="about-layer about-layer-1" />
             <div className="about-layer about-layer-2" />
@@ -80,7 +85,7 @@ export default function About() {
             initial={{ opacity: 0, x: 60 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.75, ease: 'easeOut' }}
+            transition={{ duration: 1.1, ease: 'easeOut' }}
           >
             <p className="about-subtitle">
               Master's Student · Software Engineer · Competitive Programmer · Licensed Powerlifter
@@ -91,34 +96,36 @@ export default function About() {
 
             <div className="about-stats">
               {STATS.map(({ val, label }, i) => (
-                <motion.span
+                <motion.div
                   key={label}
-                  className="stat-chip"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
+                  className="about-stat"
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.08 }}
+                  transition={{ duration: 0.6, delay: i * 0.14 }}
                 >
-                  <span><CountUp value={val} /></span> {label}
-                </motion.span>
+                  <span className="about-stat-val"><CountUp value={val} /></span>
+                  <span className="about-stat-label">{label}</span>
+                </motion.div>
               ))}
             </div>
 
-            <div className="about-social">
-              {SOCIALS.map(([icon, href, label]) => (
-                <a key={label} href={href} aria-label={label} target="_blank" rel="noopener">
-                  <i className={`fa ${icon}`} />
+            <div className="about-actions">
+              <div className="about-social">
+                {SOCIALS.map(([icon, href, label]) => (
+                  <a key={label} href={href} aria-label={label} target="_blank" rel="noopener">
+                    <i className={`fa ${icon}`} />
+                  </a>
+                ))}
+              </div>
+              <div className="about-cta">
+                <a href="#contact" className="btn-primary" style={{ display: 'inline-flex', gap: '8px', alignItems: 'center' }}>
+                  <i className="fa fa-envelope-o" /> Get In Touch
                 </a>
-              ))}
-            </div>
-
-            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-              <a href="#contact" className="btn-primary" style={{ display: 'inline-flex', gap: '8px', alignItems: 'center' }}>
-                <i className="fa fa-envelope-o" /> Get In Touch
-              </a>
-              <a href="/assets/Resume_Md Asif Iqbal Ahmed.pdf" download className="btn-outline" style={{ display: 'inline-flex', gap: '8px', alignItems: 'center' }}>
-                <i className="fa fa-download" /> Download Resume
-              </a>
+                <a href="/assets/Resume_Md Asif Iqbal Ahmed.pdf" download className="btn-outline" style={{ display: 'inline-flex', gap: '8px', alignItems: 'center' }}>
+                  <i className="fa fa-download" /> Download Resume
+                </a>
+              </div>
             </div>
           </motion.div>
         </div>

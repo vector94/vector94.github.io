@@ -2,7 +2,6 @@ import { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { motion } from 'framer-motion'
 import { useTyped } from '../hooks/useTyped'
-import { useScramble } from '../hooks/useScramble'
 import Scene from './Scene'
 
 const TYPED_STRINGS = [
@@ -13,17 +12,16 @@ const TYPED_STRINGS = [
 
 const container = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.2 } },
+  visible: { transition: { staggerChildren: 0.35 } },
 }
 
 const item = {
   hidden:  { opacity: 0, y: 32 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.75, ease: 'easeOut' } },
+  visible: { opacity: 1, y: 0, transition: { duration: 1.1, ease: 'easeOut' } },
 }
 
 export default function Hero() {
   const typed = useTyped(TYPED_STRINGS)
-  const scrambled = useScramble('Md Asif Iqbal Ahmed', { duration: 1100, delay: 500 })
 
   return (
     <section className="hero" id="hero">
@@ -50,7 +48,7 @@ export default function Hero() {
           </motion.p>
 
           <motion.h1 className="hero-name" variants={item}>
-            {scrambled}
+            Md Asif Iqbal Ahmed
           </motion.h1>
 
           <motion.p className="hero-typed" variants={item}>

@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import TiltCard from './TiltCard'
+import BokehParticles from './BokehParticles'
 
 const PROJECTS = [
   {
@@ -71,7 +72,7 @@ function ProjectCard({ project, index }) {
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.55, delay: (index % 3) * 0.1 }}
+      transition={{ duration: 0.85, delay: (index % 3) * 0.18 }}
     >
       <TiltCard intensity={6}>
         <div
@@ -106,13 +107,14 @@ function ProjectCard({ project, index }) {
 export default function Projects() {
   return (
     <section className="section-wrap projects-section" id="projects">
+      <BokehParticles />
       <div className="container">
         <motion.div
           className="section-header"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.9 }}
         >
           <span className="section-tag">What I've Built</span>
           <h2 className="section-title">My <span>Projects</span></h2>

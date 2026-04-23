@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, useInView } from 'framer-motion'
+import BokehParticles from './BokehParticles'
 
 /* ── SVG border tracer ──────────────────────────────────── */
 function BorderTracer({ color, hovering }) {
@@ -223,6 +224,7 @@ export default function Timeline() {
 
   return (
     <section className="section-wrap timeline-section" id="timeline">
+      <BokehParticles />
       <div className="container">
         <motion.div
           className="section-header"
