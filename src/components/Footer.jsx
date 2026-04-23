@@ -1,8 +1,6 @@
 const LINKS = [
   ['fa-linkedin', 'https://www.linkedin.com/in/md-asif-iqbal-ahmed/', 'LinkedIn'],
-  ['fa-github',   'https://github.com/vector94',                        'GitHub'],
-  ['fa-telegram', 'https://t.me/vector944',                             'Telegram'],
-  ['fa-facebook', 'https://www.facebook.com/asif.ahmed181/',            'Facebook'],
+  ['fa-github',   'https://github.com/vector94',                       'GitHub'],
 ]
 
 export default function Footer() {

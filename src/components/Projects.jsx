@@ -22,7 +22,7 @@ const PROJECTS = [
   {
     name: 'Codepodium',
     tech: '.NET 8 · React · PostgreSQL',
-    desc: 'A programming contest aggregator that pulls contests from Codeforces and LeetCode, with search and real-time statistics.',
+    desc: 'A programming contest aggregator that pulls contests from Codeforces and LeetCode.',
     img: '/img/project/codepodium.png',
     badge: 'Full-Stack',
     link: 'https://github.com/vector94/codepodium',
@@ -38,13 +38,13 @@ const PROJECTS = [
   {
     name: 'Blekingetrafiken Test Suite',
     tech: 'C# · NUnit · Selenium WebDriver',
-    desc: 'Automated GUI regression test suite for Blekingetrafiken.se, the public transport website for Blekinge, Sweden.',
+    desc: 'Automated GUI regression test suite for Blekingetrafiken.se.',
     img: '/img/project/blekingetrafiken.png',
     badge: 'Testing',
     link: 'https://github.com/vector94/blekingetrafiken-test-suite',
   },
   {
-    name: 'Personal Portfolio Website',
+    name: 'Personal Portfolio',
     tech: 'React · Three.js · Framer Motion',
     desc: 'Personal portfolio website showcasing projects, skills, and achievements.',
     img: '/img/project/vector94.png',
@@ -67,18 +67,19 @@ function ProjectCard({ project, index }) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50 }}
+      className="project-bento-item"
+      initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.6, delay: (index % 3) * 0.15 }}
+      transition={{ duration: 0.55, delay: (index % 3) * 0.1 }}
     >
-      <TiltCard intensity={8}>
+      <TiltCard intensity={6}>
         <div
           ref={cardRef}
           className="project-card glass"
           onMouseMove={handleMouseMove}
           style={{
-            background: `radial-gradient(circle at ${glow.x}% ${glow.y}%, rgba(124,58,237,0.14) 0%, transparent 55%), var(--bg-card)`,
+            background: `radial-gradient(circle at ${glow.x}% ${glow.y}%, rgba(124,58,237,0.13) 0%, transparent 55%), var(--bg-card)`,
           }}
         >
           <div className="project-img">
@@ -117,7 +118,7 @@ export default function Projects() {
           <h2 className="section-title">My <span>Projects</span></h2>
         </motion.div>
 
-        <div className="projects-grid">
+        <div className="projects-bento">
           {PROJECTS.map((p, i) => (
             <ProjectCard key={p.name} project={p} index={i} />
           ))}

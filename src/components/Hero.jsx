@@ -2,19 +2,18 @@ import { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { motion } from 'framer-motion'
 import { useTyped } from '../hooks/useTyped'
+import { useScramble } from '../hooks/useScramble'
 import Scene from './Scene'
 
 const TYPED_STRINGS = [
   'Software Engineer',
   'Competitive Programmer',
   'Backend Developer',
-  'System Designer',
-  'Powerlifter',
 ]
 
 const container = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.18 } },
+  visible: { transition: { staggerChildren: 0.2 } },
 }
 
 const item = {
@@ -24,10 +23,10 @@ const item = {
 
 export default function Hero() {
   const typed = useTyped(TYPED_STRINGS)
+  const scrambled = useScramble('Md Asif Iqbal Ahmed', { duration: 1100, delay: 500 })
 
   return (
     <section className="hero" id="hero">
-      {/* Full-screen Three.js canvas */}
       <Canvas
         style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
         camera={{ position: [0, 0, 6], fov: 55 }}
@@ -39,7 +38,6 @@ export default function Hero() {
         </Suspense>
       </Canvas>
 
-      {/* Text overlay */}
       <div className="hero-overlay">
         <motion.div
           className="hero-content"
@@ -52,7 +50,7 @@ export default function Hero() {
           </motion.p>
 
           <motion.h1 className="hero-name" variants={item}>
-            Md Asif Iqbal Ahmed
+            {scrambled}
           </motion.h1>
 
           <motion.p className="hero-typed" variants={item}>
@@ -62,12 +60,11 @@ export default function Hero() {
 
           <motion.div className="hero-social" variants={item}>
             {[
-              ['fa-linkedin',  'https://www.linkedin.com/in/md-asif-iqbal-ahmed/', 'LinkedIn'],
-              ['fa-github',    'https://github.com/vector94',                        'GitHub'],
-              ['fa-facebook',  'https://www.facebook.com/asif.ahmed181/',             'Facebook'],
-              ['fa-instagram', 'https://www.instagram.com/asif_ahmed181/',            'Instagram'],
-              ['fa-whatsapp',  'https://wa.link/5srvtl',                              'WhatsApp'],
-              ['fa-telegram',  'https://t.me/vector944',                              'Telegram'],
+              ['fa-linkedin', 'https://www.linkedin.com/in/md-asif-iqbal-ahmed/', 'LinkedIn'],
+              ['fa-github',   'https://github.com/vector94',                       'GitHub'],
+              ['fa-envelope', 'mailto:asif.ahmed9414@gmail.com',                   'Email'],
+              ['fa-whatsapp', 'https://wa.me/46769786257',                         'WhatsApp'],
+              ['fa-phone',    'tel:+46769786257',                                  'Phone'],
             ].map(([icon, href, label]) => (
               <a key={label} href={href} aria-label={label} target="_blank" rel="noopener">
                 <i className={`fa ${icon}`} />

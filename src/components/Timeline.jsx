@@ -1,82 +1,226 @@
-import { useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { motion, useInView } from 'framer-motion'
 
-const COLS = [
+/* ── SVG border tracer ──────────────────────────────────── */
+function BorderTracer({ color, hovering }) {
+  const svgRef   = useRef()
+  const [size, setSize]   = useState({ w: 0, h: 0 })
+  const [perim, setPerim] = useState(0)
+  const RADIUS = 20
+
+  useEffect(() => {
+    const parent = svgRef.current?.parentElement
+    if (!parent) return
+    const ro = new ResizeObserver(([e]) => {
+      const { width: w, height: h } = e.contentRect
+      setSize({ w, h })
+      setPerim(2 * (w + h) - (8 - 2 * Math.PI) * RADIUS)
+    })
+    ro.observe(parent)
+    return () => ro.disconnect()
+  }, [])
+
+  const dur     = hovering ? 1.6 : 3.8
+  const dashLen = 36
+  const glowId  = `glow-${color.replace('#', '')}`
+
+  return (
+    <svg
+      ref={svgRef}
+      style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 2, overflow: 'visible' }}
+    >
+      <defs>
+        <filter id={glowId} x="-30%" y="-30%" width="160%" height="160%">
+          <feGaussianBlur stdDeviation="4" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+      {perim > 0 && (
+        <rect
+          x="1.5" y="1.5"
+          width={size.w - 3} height={size.h - 3}
+          rx={RADIUS} ry={RADIUS}
+          fill="none"
+          stroke={color}
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeDasharray={`${dashLen} ${perim}`}
+          filter={`url(#${glowId})`}
+        >
+          <animate
+            attributeName="stroke-dashoffset"
+            from={perim + dashLen}
+            to="0"
+            dur={`${dur}s`}
+            repeatCount="indefinite"
+            calcMode="linear"
+          />
+        </rect>
+      )}
+    </svg>
+  )
+}
+
+/* ── Typewriter text ────────────────────────────────────── */
+function TypewriterText({ text, started, delay = 0 }) {
+  const [display, setDisplay] = useState('')
+  const [done, setDone]       = useState(false)
+
+  useEffect(() => {
+    if (!started) { setDisplay(''); setDone(false); return }
+    let timer, interval
+    timer = setTimeout(() => {
+      let i = 0
+      interval = setInterval(() => {
+        i++
+        setDisplay(text.slice(0, i))
+        if (i >= text.length) { clearInterval(interval); setDone(true) }
+      }, 26)
+    }, delay)
+    return () => { clearTimeout(timer); clearInterval(interval) }
+  }, [started, text, delay])
+
+  return (
+    <span>
+      {display}
+      {started && !done && (
+        <span className="tw-cursor" />
+      )}
+    </span>
+  )
+}
+
+/* ── Column data ────────────────────────────────────────── */
+const COLUMNS = [
   {
-    icon: 'fa-graduation-cap',
-    title: 'Education',
+    label: 'Education',
+    icon:  'fa-graduation-cap',
+    color: '#7c3aed',
     items: [
-      { role: 'MSc in Software Engineering',            date: 'Sep. 2025 – Present',    org: 'Blekinge Institute of Technology' },
-      { role: 'B.Sc. in Computer Science & Engineering', date: 'Jan. 2018 – May 2022', org: 'North South University' },
+      { role: 'B.Sc. in Computer Science & Engineering', org: 'North South University',           date: 'Jan 2018 – May 2022' },
+      { role: 'MSc in Software Engineering',             org: 'Blekinge Institute of Technology',  date: 'Sep 2025 – Present'  },
     ],
   },
   {
-    icon: 'fa-briefcase',
-    title: 'Experience',
+    label: 'Experience',
+    icon:  'fa-briefcase',
+    color: '#06b6d4',
     items: [
-      { role: 'Senior Software Engineer', date: 'Jan. 2024 – Jul. 2025', org: 'Enosis Solutions' },
-      { role: 'Software Engineer',        date: 'Jan. 2022 – Dec. 2023', org: 'Enosis Solutions' },
-      { role: 'Competitive Programmer',   date: 'Feb. 2018 – May 2022', org: 'NSU Problem Solver' },
+      { role: 'Competitive Programmer',    org: 'NSU Problem Solver', date: 'Feb 2018 – May 2022' },
+      { role: 'Software Engineer',          org: 'Enosis Solutions',   date: 'Jan 2022 – Dec 2023' },
+      { role: 'Senior Software Engineer',  org: 'Enosis Solutions',   date: 'Jan 2024 – Jul 2025' },
     ],
   },
   {
-    icon: 'fa-trophy',
-    title: 'Achievements',
+    label: 'Achievements',
+    icon:  'fa-trophy',
+    color: '#f59e0b',
     items: [
-      { role: 'Expert',                       date: 'Codeforces',             org: '@vector94',         link: 'https://codeforces.com/profile/vector94' },
-      { role: 'Knight',                       date: 'LeetCode',               org: '@vector94',         link: 'https://leetcode.com/u/vector94/' },
-      { role: 'Microsoft Back-End Developer', date: 'Professional Certificate', org: 'Verify on Coursera', link: 'https://www.coursera.org/account/accomplishments/professional-cert/certificate/BPBBFFUTQ14G' },
+      { role: 'Expert',                       org: 'Codeforces · @vector94',   link: 'https://codeforces.com/profile/vector94' },
+      { role: 'Knight',                       org: 'LeetCode · @vector94',     link: 'https://leetcode.com/u/vector94/'        },
+      { role: 'Microsoft Back-End Developer', org: 'Professional Certificate', link: 'https://www.coursera.org/account/accomplishments/professional-cert/certificate/BPBBFFUTQ14G' },
     ],
   },
 ]
 
-function TimelineCol({ icon, title, items, delay }) {
-  const lineRef = useRef()
-  const lineInView = useInView(lineRef, { once: true, margin: '-60px' })
+/* ── Tower ──────────────────────────────────────────────── */
+function Tower({ col, colIndex, hovered, onEnter, onLeave }) {
+  const towerRef  = useRef()
+  const inView    = useInView(towerRef, { once: true, margin: '-80px' })
+  const [active, setActive] = useState(false)
+
+  useEffect(() => {
+    if (inView && !active) setActive(true)
+  }, [inView])
+
+  const isHovered  = hovered === colIndex
+  const isDimmed   = hovered !== null && !isHovered
+
+  // stagger: give each item's typewriter a delay based on cumulative chars before it
+  let charOffset = 0
+  const delays = col.items.map((item) => {
+    const d = charOffset * 26 + colIndex * 180
+    charOffset += item.role.length + 8
+    return d
+  })
 
   return (
     <motion.div
-      className="timeline-col glass"
+      ref={towerRef}
+      className="tl-tower glass"
+      style={{ '--tower-color': col.color, position: 'relative' }}
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.6, delay }}
+      transition={{ duration: 0.55, delay: colIndex * 0.12 }}
+      animate={{
+        scale:   isDimmed ? 0.97 : 1,
+        opacity: isDimmed ? 0.38 : 1,
+        filter:  isDimmed ? 'blur(2px)' : 'blur(0px)',
+      }}
+      onMouseEnter={onEnter}
+      onMouseLeave={onLeave}
     >
-      <div className="timeline-col-title">
-        <i className={`fa ${icon}`} /> {title}
-      </div>
-      <div className="timeline-items" ref={lineRef}>
+      {/* always-running tracer */}
+      <BorderTracer color={col.color} hovering={isHovered} />
+
+      {/* activate flash */}
+      {active && (
         <motion.div
-          className="timeline-connector"
-          initial={{ scaleY: 0 }}
-          animate={lineInView ? { scaleY: 1 } : { scaleY: 0 }}
-          transition={{ duration: 1.1, delay: delay + 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
-          style={{ originY: 0 }}
+          className="tl-flash"
+          initial={{ opacity: 0.18 }}
+          animate={{ opacity: 0 }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
+          style={{ background: col.color }}
         />
-        {items.map((item, i) => (
-          <motion.div
-            key={i}
-            className="timeline-item"
-            initial={{ opacity: 0, x: -16 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: delay + 0.4 + i * 0.12 }}
-          >
-            <div className="timeline-role">{item.role}</div>
-            <div className="timeline-date">{item.date}</div>
-            <div className="timeline-org">
-              {item.link
-                ? <a href={item.link} target="_blank" rel="noopener">{item.org}</a>
-                : item.org}
+      )}
+
+      {/* header */}
+      <div className="tl-tower-header">
+        <div className="tl-tower-icon">
+          <i className={`fa ${col.icon}`} />
+        </div>
+        <h3 className="tl-tower-label">{col.label}</h3>
+      </div>
+
+      {/* items */}
+      <div className="tl-tower-body">
+        {col.items.map((item, ii) => (
+          <div key={ii} className="tl-tower-item">
+            <div className="tl-tower-dot" />
+            <div className="tl-tower-content">
+              <div className="tl-tower-role">
+                <TypewriterText
+                  text={item.role}
+                  started={active}
+                  delay={delays[ii]}
+                />
+              </div>
+              {item.date && (
+                <div className="tl-tower-date">
+                  <i className="fa fa-calendar-o" /> {item.date}
+                </div>
+              )}
+              <div className="tl-tower-org">
+                {item.link
+                  ? <a href={item.link} target="_blank" rel="noopener">{item.org}</a>
+                  : item.org}
+              </div>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
     </motion.div>
   )
 }
 
+/* ── Section ────────────────────────────────────────────── */
 export default function Timeline() {
+  const [hovered, setHovered] = useState(null)
+
   return (
     <section className="section-wrap timeline-section" id="timeline">
       <div className="container">
@@ -93,9 +237,16 @@ export default function Timeline() {
           </h2>
         </motion.div>
 
-        <div className="timeline-grid">
-          {COLS.map((col, i) => (
-            <TimelineCol key={col.title} {...col} delay={i * 0.1} />
+        <div className="tl-towers">
+          {COLUMNS.map((col, ci) => (
+            <Tower
+              key={col.label}
+              col={col}
+              colIndex={ci}
+              hovered={hovered}
+              onEnter={() => setHovered(ci)}
+              onLeave={() => setHovered(null)}
+            />
           ))}
         </div>
       </div>

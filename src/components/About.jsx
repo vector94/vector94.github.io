@@ -35,10 +35,8 @@ const STATS = [
 ]
 
 const SOCIALS = [
-  ['fa-linkedin',  'https://www.linkedin.com/in/md-asif-iqbal-ahmed/', 'LinkedIn'],
-  ['fa-github',    'https://github.com/vector94',                        'GitHub'],
-  ['fa-telegram',  'https://t.me/vector944',                             'Telegram'],
-  ['fa-facebook',  'https://www.facebook.com/asif.ahmed181/',            'Facebook'],
+  ['fa-linkedin', 'https://www.linkedin.com/in/md-asif-iqbal-ahmed/', 'LinkedIn'],
+  ['fa-github',   'https://github.com/vector94',                       'GitHub'],
 ]
 
 export default function About() {
@@ -68,6 +66,8 @@ export default function About() {
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.75, ease: 'easeOut' }}
           >
+            <div className="about-layer about-layer-1" />
+            <div className="about-layer about-layer-2" />
             <motion.img
               src="/img/about.jpg"
               alt="Md Asif Iqbal Ahmed"
@@ -83,11 +83,11 @@ export default function About() {
             transition={{ duration: 0.75, ease: 'easeOut' }}
           >
             <p className="about-subtitle">
-              Master's Student · Software Engineer · Competitive Programmer
+              Master's Student · Software Engineer · Competitive Programmer · Licensed Powerlifter
             </p>
             <p>I am currently pursuing a Master's degree in Software Engineering at Blekinge Institute of Technology in Sweden, with 3.5+ years of professional experience in software development.</p>
             <p>As a competitive programmer, I participated in ICPC Dhaka Regional and solved 2000+ problems, achieving Expert rank on Codeforces and Knight rank on LeetCode.</p>
-            <p>Also regularly into strength training and powerlifting.</p>
+            <p>Outside of tech, I am a licensed powerlifter competing under official federation rules, with a focus on squat, bench, and deadlift.</p>
 
             <div className="about-stats">
               {STATS.map(({ val, label }, i) => (
@@ -117,7 +117,7 @@ export default function About() {
                 <i className="fa fa-envelope-o" /> Get In Touch
               </a>
               <a href="/assets/Resume_Md Asif Iqbal Ahmed.pdf" download className="btn-outline" style={{ display: 'inline-flex', gap: '8px', alignItems: 'center' }}>
-                <i className="fa fa-download" /> Download CV
+                <i className="fa fa-download" /> Download Resume
               </a>
             </div>
           </motion.div>
