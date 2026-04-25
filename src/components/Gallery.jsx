@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import BokehParticles from './BokehParticles'
+import TiltCard from './TiltCard'
 
 const ITEMS = [
   { id: 1,  cat: 'programming-contest', img: '/img/portfolio/Intra NSU Programming Contest.png',                              label: 'Intra NSU Programming Contest' },
@@ -70,14 +71,16 @@ export default function Gallery() {
 
         <div className="gallery-masonry">
           <AnimatePresence>
-            {visible.map(item => (
+            {visible.map((item, i) => (
+              <TiltCard intensity={6}>
               <motion.div
                 key={item.id}
                 className="gallery-masonry-item glass"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, scale: 0.9, y: 24 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.5 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.6, delay: (i % 3) * 0.1 }}
                 onClick={() => !item.video && setLightbox(item)}
                 style={{ cursor: item.video ? 'default' : 'zoom-in' }}
               >
@@ -99,6 +102,7 @@ export default function Gallery() {
                   </div>
                 )}
               </motion.div>
+              </TiltCard>
             ))}
           </AnimatePresence>
         </div>

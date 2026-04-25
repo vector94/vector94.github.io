@@ -15,24 +15,25 @@ export default function BokehParticles({ intensity = 1 }) {
     resize()
     window.addEventListener('resize', resize)
 
-    const orbs = Array.from({ length: 14 }, () => ({
+    const orbs = Array.from({ length: 20 }, () => ({
       x:       Math.random() * canvas.width,
       y:       Math.random() * canvas.height,
-      r:       30 + Math.random() * 55,
-      vx:      (Math.random() - 0.5) * 0.15,
-      vy:      (Math.random() - 0.5) * 0.15,
+      r:       50 + Math.random() * 80,
+      vx:      (Math.random() - 0.5) * 0.18,
+      vy:      (Math.random() - 0.5) * 0.18,
       phase:   Math.random() * Math.PI * 2,
       speed:   0.003 + Math.random() * 0.005,
-      opacity: 0.1 + Math.random() * 0.12,
+      opacity: 0.15 + Math.random() * 0.18,
+      accent:  Math.random() > 0.65 ? 2 : 1,
     }))
 
-    function getAccentRgb() {
+    function getAccentRgb(accentNum) {
       const isDay = document.documentElement.getAttribute('data-theme') === 'day'
+      if (accentNum === 2) return isDay ? '30,58,95' : '249,115,22'
       return isDay ? '159,18,57' : '225,29,72'
     }
 
     function draw() {
-      const rgb = getAccentRgb()
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
       orbs.forEach(orb => {
@@ -44,6 +45,7 @@ export default function BokehParticles({ intensity = 1 }) {
         if (orb.y < -orb.r * 2) orb.y = canvas.height + orb.r
         if (orb.y > canvas.height + orb.r * 2) orb.y = -orb.r
 
+        const rgb = getAccentRgb(orb.accent)
         const pulse = ((Math.sin(orb.phase) + 1) / 2) * orb.opacity * intensity
         const grad = ctx.createRadialGradient(orb.x, orb.y, 0, orb.x, orb.y, orb.r)
         grad.addColorStop(0,   `rgba(${rgb},${pulse})`)

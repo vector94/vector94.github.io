@@ -122,7 +122,7 @@ export default function About() {
                 <a href="#contact" className="btn-primary" style={{ display: 'inline-flex', gap: '8px', alignItems: 'center' }}>
                   <i className="fa fa-envelope-o" /> Get In Touch
                 </a>
-                <a href="/assets/Resume_Md Asif Iqbal Ahmed.pdf" download className="btn-outline" style={{ display: 'inline-flex', gap: '8px', alignItems: 'center' }}>
+                <a href="/assets/Asif_Ahmed_Resume.pdf" download className="btn-outline" style={{ display: 'inline-flex', gap: '8px', alignItems: 'center' }}>
                   <i className="fa fa-download" /> Download Resume
                 </a>
               </div>
