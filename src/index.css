@@ -44,8 +44,8 @@ ul { list-style: none; }
   --bg-card:       rgba(255, 255, 255, 0.80);
   --border-color:  rgba(159, 18, 57, 0.13);
   --accent-1:      #9f1239;
-  --accent-2:      #3b82f6;
-  --accent-grad:   linear-gradient(135deg, #9f1239 0%, #3b82f6 100%);
+  --accent-2:      #1e3a5f;
+  --accent-grad:   linear-gradient(135deg, #9f1239 0%, #1e3a5f 100%);
   --text-primary:  #0f172a;
   --text-secondary:#475569;
   --text-muted:    #94a3b8;
@@ -77,7 +77,7 @@ ul { list-style: none; }
 @keyframes aFloat3 { from { transform: translate(0, 0) scale(1); } to { transform: translate(110px, -90px) scale(0.85); } }
 /* Aurora is less visible on light bg — reduce further and shift colors */
 [data-theme="day"] .orb-1 { opacity: 0.08; background: #9f1239; }
-[data-theme="day"] .orb-2 { opacity: 0.06; background: #3b82f6; }
+[data-theme="day"] .orb-2 { opacity: 0.06; background: #1e3a5f; }
 [data-theme="day"] .orb-3 { opacity: 0.04; }
 [data-theme="day"] .orb-4 { opacity: 0.03; }
 
@@ -93,6 +93,19 @@ ul { list-style: none; }
   top: 0; left: 0;
 }
 [data-theme="day"] .cursor-glow { background: radial-gradient(circle, rgba(159,18,57,0.06) 0%, transparent 65%); }
+
+/* ---- Film Grain ---- */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  opacity: 0.038;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 220px 220px;
+  background-repeat: repeat;
+}
+[data-theme="day"] .grain-overlay { opacity: 0.05; }
 
 /* ---- Utilities ---- */
 .glass {
@@ -111,6 +124,8 @@ ul { list-style: none; }
 .section-wrap { padding: 4rem 0; position: relative; z-index: 2; overflow: hidden; }
 .section-canvas-bg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
 .section-wrap .container { position: relative; z-index: 1; }
+
+
 
 .section-header {
   text-align: center;
@@ -236,6 +251,13 @@ ul { list-style: none; }
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: var(--text-primary);
+}
+[data-theme="day"] .nav-link:hover { background: rgba(159, 18, 57, 0.07); color: var(--accent-1); }
+[data-theme="day"] .nav-link.active {
+  background: var(--accent-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .nav-actions { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }

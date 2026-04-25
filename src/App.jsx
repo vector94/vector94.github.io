@@ -26,6 +26,7 @@ export default function App() {
 
   return (
     <>
+      <div className="grain-overlay" aria-hidden="true" />
       <AuroraBackground />
       <CursorGlow />
       <Navbar theme={theme} onToggleTheme={toggleTheme} />
