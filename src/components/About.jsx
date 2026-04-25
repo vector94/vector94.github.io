@@ -88,11 +88,11 @@ export default function About() {
             transition={{ duration: 1.1, ease: 'easeOut' }}
           >
             <p className="about-subtitle">
-              Master's Student · Software Engineer · Competitive Programmer · Licensed Powerlifter
+              Master's Student · Software Engineer · Competitive Programmer
             </p>
-            <p>I am currently pursuing a Master's degree in Software Engineering at Blekinge Institute of Technology in Sweden, with 3.5+ years of professional experience in software development.</p>
-            <p>As a competitive programmer, I participated in ICPC Dhaka Regional and solved 2000+ problems, achieving Expert rank on Codeforces and Knight rank on LeetCode.</p>
-            <p>Outside of tech, I am a licensed powerlifter competing under official federation rules, with a focus on squat, bench, and deadlift.</p>
+            <p>I am currently pursuing a Master's degree in Software Engineering at Blekinge Institute of Technology in Sweden. I have 3.5+ years of professional experience in software development, working across backend systems, cloud infrastructure, and full stack projects.</p>
+            <p>Competitive programming has been a big part of my journey. I have solved 2000+ problems across various online judges including Codeforces, LeetCode, UVa and others, participated in ICPC Dhaka Regional, and hold Expert rank on Codeforces and Knight rank on LeetCode.</p>
+            <p>During my free time, I am a fitness enthusiast who has recently gotten more serious about powerlifting and now competes as a licensed athlete under swedish official federation.</p>
 
             <div className="about-stats">
               {STATS.map(({ val, label }, i) => (
