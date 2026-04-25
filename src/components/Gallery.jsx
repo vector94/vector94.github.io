@@ -3,19 +3,23 @@ import { motion, AnimatePresence } from 'framer-motion'
 import BokehParticles from './BokehParticles'
 
 const ITEMS = [
-  { id: 1,  cat: 'programming-contest', img: '/img/portfolio/IEEE Power Buzz Programming Contest.jpg',                     label: 'IEEE Power Buzz Programming Contest' },
-  { id: 2,  cat: 'programming-contest', img: '/img/portfolio/SUST Intra University Programming Contest.jpg',               label: 'SUST Intra University Programming Contest' },
-  { id: 3,  cat: 'programming-contest', img: '/img/portfolio/Intra NSU Programming Contest.jpg',                           label: 'Intra NSU Programming Contest' },
-  { id: 4,  cat: 'programming-contest', img: '/img/portfolio/SUB Intra University Programming Contest.jpg',                label: 'SUB Intra University Programming Contest' },
-  { id: 5,  cat: 'programming-contest', img: '/img/portfolio/International Collegiate Programming Contest Dhaka Regional.jpg', label: 'ICPC Dhaka Regional' },
-  { id: 6,  cat: 'programming-contest', img: '/img/portfolio/National Collegiate Programming Contest.jpg',                 label: 'National Collegiate Programming Contest' },
-  { id: 7,  cat: 'programming-contest', img: '/img/portfolio/Intra NSU Programming Contest (2).jpg',                      label: 'Intra NSU Programming Contest' },
-  { id: 8,  cat: 'programming-contest', img: '/img/portfolio/Expert, Codeforces.png',                                     label: 'Expert — Codeforces' },
-  { id: 9,  cat: 'programming-contest', img: '/img/portfolio/Knight, LeetCode.png',                                       label: 'Knight — LeetCode' },
-  { id: 10, cat: 'programming-contest', img: '/img/portfolio/SUST Intra University Programming Contest (2).jpg',          label: 'SUST Intra University Programming Contest' },
-  { id: 11, cat: 'programming-contest', img: '/img/portfolio/BUP Intra University Programming Contest.jpg',               label: 'BUP Intra University Programming Contest' },
-  // { id: 12, cat: 'powerlifting', video: '/video/squat_160kg.mov',    label: 'Squat 160kg' },
-  // { id: 13, cat: 'powerlifting', video: '/video/deadlift_200kg.mov', label: 'Deadlift 200kg' },
+  { id: 1,  cat: 'programming-contest', img: '/img/portfolio/Intra NSU Programming Contest.png',                              label: 'Intra NSU Programming Contest' },
+  { id: 2,  cat: 'programming-contest', img: '/img/portfolio/International Collegiate Programming Contest Dhaka Regional.png', label: 'ICPC Dhaka Regional' },
+  { id: 3,  cat: 'programming-contest', img: '/img/portfolio/Intra NSU Programming Contest (2).png',                          label: 'Intra NSU Programming Contest' },
+  { id: 4,  cat: 'programming-contest', img: '/img/portfolio/IEEE Power Buzz Programming Contest (2).png',                    label: 'IEEE Power Buzz Programming Contest' },
+  { id: 5,  cat: 'programming-contest', img: '/img/portfolio/BUP Intra University Programming Contest.png',                   label: 'BUP Intra University Programming Contest' },
+  { id: 6,  cat: 'programming-contest', img: '/img/portfolio/SUST Intra University Programming Contest.png',                  label: 'SUST Intra University Programming Contest' },
+  { id: 7,  cat: 'programming-contest', img: '/img/portfolio/Expert, Codeforces.png',                                         label: 'Expert — Codeforces' },
+  { id: 8,  cat: 'programming-contest', img: '/img/portfolio/National Collegiate Programming Contest.png',                    label: 'National Collegiate Programming Contest' },
+  { id: 9,  cat: 'programming-contest', img: '/img/portfolio/SUB Intra University Programming Contest.png',                   label: 'SUB Intra University Programming Contest' },
+  { id: 10, cat: 'programming-contest', img: '/img/portfolio/Knight, LeetCode.png',                                           label: 'Knight — LeetCode' },
+  { id: 11, cat: 'programming-contest', img: '/img/portfolio/Intra NSU Programming Contest (3).png',                          label: 'Intra NSU Programming Contest' },
+  // { id: 12, cat: 'programming-contest', img: '/img/portfolio/Hackerrank 5 Star Gold Badge.png',                            label: '5★ Problem Solving — HackerRank' },
+  // { id: 13, cat: 'programming-contest', img: '/img/portfolio/SUST Intra University Programming Contest (2).png',           label: 'SUST Intra University Programming Contest' },
+  { id: 14, cat: 'programming-contest', img: '/img/portfolio/LeetCode 500 Days Badge.png',                                    label: '500 Days Badge — LeetCode' },
+  // { id: 15, cat: 'programming-contest', img: '/img/portfolio/IEEE Power Buzz Programming Contest.png',                     label: 'IEEE Power Buzz Programming Contest' },
+  // { id: 14, cat: 'powerlifting', video: '/video/squat_160kg.mov',    label: 'Squat 160kg' },
+  // { id: 15, cat: 'powerlifting', video: '/video/deadlift_200kg.mov', label: 'Deadlift 200kg' },
 ]
 
 const FILTERS = [

@@ -108,7 +108,7 @@ ul { list-style: none; }
   padding: 0 2rem;
 }
 
-.section-wrap { padding: 6rem 0; position: relative; z-index: 2; overflow: hidden; }
+.section-wrap { padding: 4rem 0; position: relative; z-index: 2; overflow: hidden; }
 .section-canvas-bg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
 .section-wrap .container { position: relative; z-index: 1; }
 
@@ -653,6 +653,56 @@ ul { list-style: none; }
 [data-theme="day"] .skill-tag:hover { background: rgba(159, 18, 57, 0.2); border-color: var(--accent-1); color: var(--accent-1); }
 .skill-card:hover .skill-tag { background: rgba(225, 29, 72, 0.18); color: var(--text-primary); }
 
+/* ---- CP Dashboard ---- */
+.cp-section {
+  background-image: radial-gradient(rgba(225,29,72,0.12) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+[data-theme="day"] .cp-section {
+  background-image: radial-gradient(rgba(159,18,57,0.10) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+.cp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.cp-card {
+  padding: 1.75rem;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  border-top: 2px solid var(--cp-color, var(--accent-1));
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.cp-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.18); }
+.cp-card-top { display: flex; align-items: center; gap: 1rem; }
+.cp-icon-wrap {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: var(--bg-secondary);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; flex-shrink: 0;
+}
+.cp-card-info { flex: 1; min-width: 0; }
+.cp-platform-name { font-weight: 700; font-size: 1rem; color: var(--text-primary); }
+.cp-handle { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
+.cp-badge {
+  font-size: 0.72rem; font-weight: 700; padding: 3px 10px;
+  border-radius: 20px; border: 1px solid; flex-shrink: 0;
+  letter-spacing: 0.04em;
+}
+.cp-stats { display: flex; gap: 1rem; flex-wrap: wrap; }
+.cp-stat { display: flex; flex-direction: column; gap: 2px; min-width: 48px; }
+.cp-stat-val { font-size: 1.1rem; font-weight: 700; color: var(--text-primary); }
+.cp-stat-label { font-size: 0.7rem; color: var(--text-muted); }
+.cp-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.82rem; font-weight: 600; color: var(--accent-1);
+  margin-top: auto; transition: gap 0.2s;
+}
+.cp-link:hover { gap: 10px; }
+
 /* ---- Gallery ---- */
 .gallery-section {
   background: rgba(4, 4, 15, 0.92);
@@ -878,6 +928,7 @@ ul { list-style: none; }
   .skills-bento { grid-template-columns: 1fr 1fr; }
   .projects-bento { grid-template-columns: 1fr 1fr; }
   .gallery-masonry { grid-template-columns: repeat(2, 1fr); }
+  .cp-grid { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 768px) {
@@ -892,8 +943,9 @@ ul { list-style: none; }
 
   .skills-bento { grid-template-columns: 1fr; }
 
-
   .gallery-masonry { grid-template-columns: repeat(2, 1fr); }
+
+  .cp-grid { grid-template-columns: 1fr; }
 
   .projects-bento { grid-template-columns: 1fr; }
   .projects-bento > * { grid-column: span 1 !important; }
