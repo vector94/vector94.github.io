@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useScroll, useSpring } from 'framer-motion'
+import { RESUME_PATH } from '../data/profile'
 
 const NAV_LINKS = [
   { href: '#hero',     label: 'Home' },
   { href: '#about',    label: 'About' },
   { href: '#timeline', label: 'Experience' },
   { href: '#skills',   label: 'Skills' },
-  { href: '#gallery',  label: 'Gallery' },
   { href: '#projects', label: 'Projects' },
+  { href: '#gallery',  label: 'Gallery' },
   { href: '#contact',  label: 'Contact' },
 ]
 
@@ -15,6 +16,8 @@ export default function Navbar({ theme, onToggleTheme }) {
   const [scrolled, setScrolled]   = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [active, setActive]       = useState('hero')
+  const { scrollYProgress } = useScroll()
+  const progress = useSpring(scrollYProgress, { stiffness: 140, damping: 28, mass: 0.4 })
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -67,7 +70,7 @@ export default function Navbar({ theme, onToggleTheme }) {
             <button className="btn-theme" onClick={onToggleTheme} aria-label="Toggle theme">
               {theme === 'day' ? '☀️' : '🌙'}
             </button>
-            <a href="/assets/Resume_Md Asif Iqbal Ahmed.pdf" download className="btn-classic">Resume</a>
+            <a href={RESUME_PATH} download className="btn-classic">Resume</a>
             <a href="classic.html" className="btn-classic">Classic</a>
             <button
               className={`hamburger${mobileOpen ? ' open' : ''}`}
@@ -78,6 +81,7 @@ export default function Navbar({ theme, onToggleTheme }) {
             </button>
           </div>
         </div>
+        <motion.div className="scroll-progress" style={{ scaleX: progress }} />
       </motion.nav>
 
       <motion.div
