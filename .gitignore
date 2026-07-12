@@ -23,3 +23,6 @@ yarn-debug.log*
 
 # Graphify
 graphify-out/
+
+# Claude Code project instructions (local only)
+CLAUDE.md

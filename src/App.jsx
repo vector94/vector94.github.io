@@ -11,6 +11,7 @@ import Footer from './components/Footer'
 import BackToTop from './components/BackToTop'
 import AuroraBackground from './components/AuroraBackground'
 import CursorGlow from './components/CursorGlow'
+import { SceneCanvas3D } from './three/lazy'
 
 export default function App() {
   const [theme, setTheme] = useState(
@@ -28,6 +29,7 @@ export default function App() {
     <>
       <div className="grain-overlay" aria-hidden="true" />
       <AuroraBackground />
+      <SceneCanvas3D />
       <CursorGlow />
       <Navbar theme={theme} onToggleTheme={toggleTheme} />
       <main>
@@ -35,8 +37,8 @@ export default function App() {
         <About />
         <Timeline />
         <Skills />
-        <Gallery />
         <Projects />
+        <Gallery />
         <Contact />
       </main>
       <Footer />

@@ -1,47 +1,15 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import TiltCard from './TiltCard'
 import BokehParticles from './BokehParticles'
-
-const SKILLS = [
-  {
-    icon: 'fa-server',
-    title: 'Backend & Cloud',
-    accent: 'var(--accent-1)',
-    tags: ['C#', 'Python', '.NET Core', 'ASP.NET Core', 'FastAPI', 'EF Core', 'Dapper', 'SQL Server', 'PostgreSQL', 'TimescaleDB', 'Redis', 'RabbitMQ', 'Azure Services', 'Docker', 'CI/CD', 'DevOps'],
-  },
-  {
-    icon: 'fa-sitemap',
-    title: 'System Design',
-    accent: 'var(--accent-2)',
-    tags: ['Solution Architecture', 'Distributed Systems', 'Scalability', 'Event-Driven', 'API Design', 'Load Balancing', 'Caching Strategies', 'Performance Tuning', 'DB Optimization', 'Monitoring & Logging'],
-  },
-  {
-    icon: 'fa-cogs',
-    title: 'Software Engineering',
-    accent: 'var(--accent-2)',
-    tags: ['SOLID Principles', 'Design Patterns', 'Clean Architecture', 'DDD', 'CQRS', 'MediatR', 'Microservices', 'RESTful APIs', 'xUnit Testing', 'Agile', 'Scrum', 'SDLC'],
-  },
-  {
-    icon: 'fa-shield',
-    title: 'Security',
-    accent: 'var(--accent-1)',
-    tags: ['Authentication', 'Authorization', 'IAM', 'Secure Coding', 'Encryption', 'Application Security', 'Data Security'],
-  },
-  {
-    icon: 'fa-code',
-    title: 'Frontend',
-    accent: 'var(--accent-1)',
-    tags: ['React', 'Next.js', 'Angular', 'TypeScript'],
-  },
-  {
-    icon: 'fa-trophy',
-    title: 'Competitive Programming',
-    accent: 'var(--accent-2)',
-    tags: ['C++', 'Data Structures', 'Algorithms', 'Dynamic Programming', 'Graph Theory', 'Codeforces', 'LeetCode'],
-  },
-]
+import { Constellation3D } from '../three/lazy'
+import { SKILLS } from '../data/skills'
 
 export default function Skills() {
+  // two-way hover link between the bento cards and constellation hubs
+  const [cardHover, setCardHover] = useState(null)
+  const [hubHover, setHubHover] = useState(null)
+
   return (
     <section className="section-wrap skills-section" id="skills">
       <BokehParticles />
@@ -57,11 +25,30 @@ export default function Skills() {
           <h2 className="section-title">My <span>Skills</span></h2>
         </motion.div>
 
+        <motion.div
+          className="skills-constellation"
+          initial={{ opacity: 0, scale: 0.96 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 1 }}
+        >
+          <Constellation3D
+            categories={SKILLS}
+            highlight={cardHover}
+            onHubHover={setHubHover}
+          />
+          <span className="constellation-hint">
+            <i className="fa fa-hand-paper-o" /> Drag to explore
+          </span>
+        </motion.div>
+
         <div className="skills-bento">
           {SKILLS.map((skill, i) => (
             <motion.div
               key={skill.title}
-              className="skill-bento-item"
+              className={`skill-bento-item${hubHover === i ? ' hub-linked' : ''}`}
+              onMouseEnter={() => setCardHover(i)}
+              onMouseLeave={() => setCardHover(c => (c === i ? null : c))}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}

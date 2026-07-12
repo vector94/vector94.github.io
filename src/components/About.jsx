@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from 'react'
 import { motion, useInView, useScroll, useTransform } from 'framer-motion'
 import BokehParticles from './BokehParticles'
+import { STATS, SOCIALS, RESUME_PATH } from '../data/profile'
 
 function CountUp({ value, duration = 1500 }) {
   const ref = useRef()
@@ -27,21 +28,6 @@ function CountUp({ value, duration = 1500 }) {
 
   return <span ref={ref}>{display}</span>
 }
-
-const STATS = [
-  { val: '3.5+', label: 'Years Experience' },
-  { val: '2000+', label: 'Problems Solved' },
-  { val: 'Expert', label: 'on Codeforces' },
-  { val: 'Knight', label: 'on LeetCode' },
-]
-
-const SOCIALS = [
-  ['fa-linkedin', 'https://www.linkedin.com/in/md-asif-iqbal-ahmed/', 'LinkedIn'],
-  ['fa-github',   'https://github.com/vector94',                       'GitHub'],
-  ['fa-envelope', 'mailto:asif.ahmed9414@gmail.com',                   'Email'],
-  ['fa-whatsapp', 'https://wa.me/46769786257',                         'WhatsApp'],
-  ['fa-phone',    'tel:+46769786257',                                  'Phone'],
-]
 
 export default function About() {
   const sectionRef = useRef()
@@ -112,7 +98,7 @@ export default function About() {
 
             <div className="about-actions">
               <div className="about-social">
-                {SOCIALS.map(([icon, href, label]) => (
+                {SOCIALS.map(({ icon, href, label }) => (
                   <a key={label} href={href} aria-label={label} target="_blank" rel="noopener">
                     <i className={`fa ${icon}`} />
                   </a>
@@ -122,7 +108,7 @@ export default function About() {
                 <a href="#contact" className="btn-primary" style={{ display: 'inline-flex', gap: '8px', alignItems: 'center' }}>
                   <i className="fa fa-envelope-o" /> Get In Touch
                 </a>
-                <a href="/assets/Asif_Ahmed_Resume.pdf" download className="btn-outline" style={{ display: 'inline-flex', gap: '8px', alignItems: 'center' }}>
+                <a href={RESUME_PATH} download className="btn-outline" style={{ display: 'inline-flex', gap: '8px', alignItems: 'center' }}>
                   <i className="fa fa-download" /> Download Resume
                 </a>
               </div>

@@ -2,57 +2,7 @@ import { useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import TiltCard from './TiltCard'
 import BokehParticles from './BokehParticles'
-
-const PROJECTS = [
-  {
-    name: 'Nazar',
-    tech: 'Python · FastAPI · TimescaleDB · RabbitMQ',
-    desc: 'Performance monitoring platform with event-driven architecture and anomaly detection.',
-    img: '/img/project/nazar.png',
-    badge: 'Full-Stack',
-    link: 'https://github.com/vector94/nazar',
-  },
-  {
-    name: 'LeetKhata',
-    tech: 'C#',
-    desc: 'Automatically syncs your accepted LeetCode solutions to GitHub.',
-    img: '/img/project/leetkhata.png',
-    badge: 'Tool',
-    link: 'https://github.com/vector94/leetkhata',
-  },
-  {
-    name: 'Codepodium',
-    tech: '.NET 8 · React · PostgreSQL',
-    desc: 'A programming contest aggregator that pulls contests from Codeforces and LeetCode.',
-    img: '/img/project/codepodium.png',
-    badge: 'Full-Stack',
-    link: 'https://github.com/vector94/codepodium',
-  },
-  {
-    name: 'Iker Finance',
-    tech: '.NET Core · PostgreSQL · Next.js',
-    desc: 'Multi-currency finance manager built with Clean Architecture and CQRS pattern.',
-    img: '/img/project/ikerfinance.png',
-    badge: 'Full-Stack',
-    link: 'https://github.com/vector94/iker-finance-backend',
-  },
-  {
-    name: 'Blekingetrafiken Test Suite',
-    tech: 'C# · NUnit · Selenium WebDriver',
-    desc: 'Automated GUI regression test suite for Blekingetrafiken.se.',
-    img: '/img/project/blekingetrafiken.png',
-    badge: 'Testing',
-    link: 'https://github.com/vector94/blekingetrafiken-test-suite',
-  },
-  {
-    name: 'Personal Portfolio',
-    tech: 'React · Three.js · Framer Motion',
-    desc: 'Personal portfolio website showcasing projects, skills, and achievements.',
-    img: '/img/project/vector94.png',
-    badge: 'Web Design',
-    link: 'https://github.com/vector94/vector94.github.io',
-  },
-]
+import { PROJECTS } from '../data/projects'
 
 function ProjectCard({ project, index }) {
   const cardRef = useRef()
@@ -74,7 +24,7 @@ function ProjectCard({ project, index }) {
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.85, delay: (index % 3) * 0.18 }}
     >
-      <TiltCard intensity={6}>
+      <TiltCard intensity={10}>
         <div
           ref={cardRef}
           className="project-card glass"

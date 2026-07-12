@@ -1,14 +1,7 @@
-import { Suspense } from 'react'
-import { Canvas } from '@react-three/fiber'
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { useTyped } from '../hooks/useTyped'
-import Scene from './Scene'
-
-const TYPED_STRINGS = [
-  'Software Engineer',
-  'Competitive Programmer',
-  'Backend Developer',
-]
+import { Hero3D } from '../three/lazy'
+import { TYPED_STRINGS, SOCIALS } from '../data/profile'
 
 const container = {
   hidden: {},
@@ -22,21 +15,16 @@ const item = {
 
 export default function Hero() {
   const typed = useTyped(TYPED_STRINGS)
+  const { scrollY } = useScroll()
+  const exitOpacity = useTransform(scrollY, [0, 550], [1, 0])
+  const exitY = useTransform(scrollY, [0, 550], [0, -110])
+  const indicatorOpacity = useTransform(scrollY, [0, 180], [1, 0])
 
   return (
     <section className="hero" id="hero">
-      <Canvas
-        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
-        camera={{ position: [0, 0, 6], fov: 55 }}
-        gl={{ antialias: true, alpha: true }}
-        dpr={[1, 1.5]}
-      >
-        <Suspense fallback={null}>
-          <Scene />
-        </Suspense>
-      </Canvas>
+      <Hero3D />
 
-      <div className="hero-overlay">
+      <motion.div className="hero-overlay" style={{ opacity: exitOpacity, y: exitY }}>
         <motion.div
           className="hero-content"
           variants={container}
@@ -57,13 +45,7 @@ export default function Hero() {
           </motion.p>
 
           <motion.div className="hero-social" variants={item}>
-            {[
-              ['fa-linkedin', 'https://www.linkedin.com/in/md-asif-iqbal-ahmed/', 'LinkedIn'],
-              ['fa-github',   'https://github.com/vector94',                       'GitHub'],
-              ['fa-envelope', 'mailto:asif.ahmed9414@gmail.com',                   'Email'],
-              ['fa-whatsapp', 'https://wa.me/46769786257',                         'WhatsApp'],
-              ['fa-phone',    'tel:+46769786257',                                  'Phone'],
-            ].map(([icon, href, label]) => (
+            {SOCIALS.map(({ icon, href, label }) => (
               <a key={label} href={href} aria-label={label} target="_blank" rel="noopener">
                 <i className={`fa ${icon}`} />
               </a>
@@ -79,12 +61,12 @@ export default function Hero() {
             </a>
           </motion.div>
         </motion.div>
-      </div>
+      </motion.div>
 
-      <div className="scroll-indicator">
+      <motion.div className="scroll-indicator" style={{ opacity: indicatorOpacity }}>
         <div className="scroll-mouse" />
         <span>Scroll</span>
-      </div>
+      </motion.div>
     </section>
   )
 }
