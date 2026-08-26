@@ -203,7 +203,7 @@ export default function Timeline() {
         >
           <span className="section-tag">My Journey</span>
           <h2 className="section-title">
-            Education, Experience &amp; <span>Achievements</span>
+            Education, Experience, <span>Achievements &amp; Certifications</span>
           </h2>
         </motion.div>
 

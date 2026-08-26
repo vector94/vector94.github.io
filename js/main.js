@@ -13,6 +13,7 @@ doc.ready(function () {
             "Md Asif Iqbal Ahmed",
             "a Software Engineer",
             "a Competitive Programmer",
+            "a Backend Developer",
           ],
           smartBackspace: true,
           loop: true,

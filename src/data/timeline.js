@@ -22,8 +22,17 @@ export const COLUMNS = [
     icon:  'fa-trophy',
     color: '#f59e0b',
     items: [
-      { role: 'Expert',                       org: 'Codeforces · @vector94',   link: 'https://codeforces.com/profile/vector94' },
-      { role: 'Knight',                       org: 'LeetCode · @vector94',     link: 'https://leetcode.com/u/vector94/'        },
+      { role: 'Knight', org: 'LeetCode · Top 4% Globally', link: 'https://leetcode.com/u/vector94/'    },
+      { role: 'Expert', org: 'Codeforces · @vector94', link: 'https://codeforces.com/profile/vector94' },
+      { role: 'Honorable Mention', org: 'ACM ICPC Dhaka Regional 2019', link: 'https://icpc.global/ICPCID/S1WXKMHPP18W' },
+    ],
+  },
+  {
+    label: 'Certifications',
+    icon:  'fa-certificate',
+    color: '#10b981',
+    items: [
+      { role: 'Machine Learning Specialization', org: 'DeepLearning.AI & Stanford Online', link: 'https://www.deeplearning.ai/certificates/3274fefd-02d1-403b-a84e-62703295b3f2' },
       { role: 'Microsoft Back-End Developer', org: 'Professional Certificate', link: 'https://www.coursera.org/account/accomplishments/professional-cert/certificate/BPBBFFUTQ14G' },
     ],
   },

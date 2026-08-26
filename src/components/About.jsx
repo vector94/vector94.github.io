@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from 'react'
 import { motion, useInView, useScroll, useTransform } from 'framer-motion'
 import BokehParticles from './BokehParticles'
-import { STATS, SOCIALS, RESUME_PATH } from '../data/profile'
+import { STATS, SOCIALS } from '../data/profile'
 
 function CountUp({ value, duration = 1500 }) {
   const ref = useRef()
@@ -76,10 +76,9 @@ export default function About() {
             <p className="about-subtitle">
               Master's Student · Software Engineer · Competitive Programmer
             </p>
-            <p>I am currently pursuing a Master's degree in Software Engineering at Blekinge Institute of Technology in Sweden. I have 3.5+ years of professional experience in software development, working across backend systems, cloud infrastructure, and full stack projects.</p>
-            <p>Competitive programming has been a big part of my journey. I have solved 2000+ problems across various online judges including Codeforces, LeetCode, UVa and others, participated in ICPC Dhaka Regional, and hold Expert rank on Codeforces and Knight rank on LeetCode.</p>
-            <p>During my free time, I am a fitness enthusiast who has recently gotten more serious about powerlifting and now competes as a licensed athlete under swedish official federation.</p>
-
+            <p>I'm a Software Engineer with 3.5+ years of experience building backend systems in production, now pursuing an M.Sc. in Software Engineering at Blekinge Institute of Technology in Sweden.</p>
+            <p>My work has spanned backend development across several enterprise software products, building and maintaining RESTful APIs, optimizing database performance, and improving system reliability.</p>
+            <p>Competitive programming has shaped how I approach problem-solving. I've tackled challenges across Codeforces, LeetCode, and UVa, and represented my team at the ICPC Dhaka Regional.</p>
             <div className="about-stats">
               {STATS.map(({ val, label }, i) => (
                 <motion.div
@@ -107,9 +106,6 @@ export default function About() {
               <div className="about-cta">
                 <a href="#contact" className="btn-primary" style={{ display: 'inline-flex', gap: '8px', alignItems: 'center' }}>
                   <i className="fa fa-envelope-o" /> Get In Touch
-                </a>
-                <a href={RESUME_PATH} download className="btn-outline" style={{ display: 'inline-flex', gap: '8px', alignItems: 'center' }}>
-                  <i className="fa fa-download" /> Download Resume
                 </a>
               </div>
             </div>

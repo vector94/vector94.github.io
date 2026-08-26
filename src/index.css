@@ -80,6 +80,9 @@ ul { list-style: none; }
 [data-theme="day"] .orb-2 { opacity: 0.06; background: #1e3a5f; }
 [data-theme="day"] .orb-3 { opacity: 0.04; }
 [data-theme="day"] .orb-4 { opacity: 0.03; }
+@media (prefers-reduced-motion: reduce) {
+  .aurora-orb, .scroll-indicator, .scroll-mouse::after { animation: none; }
+}
 
 /* ---- Cursor Glow ---- */
 .cursor-glow {
@@ -577,7 +580,7 @@ ul { list-style: none; }
 
 .tl-towers {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
   align-items: stretch;
 }
@@ -1038,6 +1041,7 @@ ul { list-style: none; }
   .projects-bento { grid-template-columns: 1fr 1fr; }
   .gallery-masonry { grid-template-columns: repeat(2, 1fr); }
   .cp-grid { grid-template-columns: 1fr 1fr; }
+  .tl-towers { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 768px) {
