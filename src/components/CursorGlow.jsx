@@ -1,9 +1,12 @@
 import { useEffect, useRef } from 'react'
+import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion'
 
 export default function CursorGlow() {
   const ref = useRef()
+  const reducedMotion = usePrefersReducedMotion()
 
   useEffect(() => {
+    if (reducedMotion) return
     let raf
     const target = { x: -600, y: -600 }
     const current = { x: -600, y: -600 }
@@ -29,7 +32,9 @@ export default function CursorGlow() {
       window.removeEventListener('mousemove', onMove)
       cancelAnimationFrame(raf)
     }
-  }, [])
+  }, [reducedMotion])
+
+  if (reducedMotion) return null
 
   return <div ref={ref} className="cursor-glow" aria-hidden="true" />
 }

@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { motion, useScroll, useSpring } from 'framer-motion'
-import { RESUME_PATH } from '../data/profile'
 
 const NAV_LINKS = [
   { href: '#hero',     label: 'Home' },
@@ -70,7 +69,6 @@ export default function Navbar({ theme, onToggleTheme }) {
             <button className="btn-theme" onClick={onToggleTheme} aria-label="Toggle theme">
               {theme === 'day' ? '☀️' : '🌙'}
             </button>
-            <a href={RESUME_PATH} download className="btn-classic">Resume</a>
             <a href="classic.html" className="btn-classic">Classic</a>
             <button
               className={`hamburger${mobileOpen ? ' open' : ''}`}

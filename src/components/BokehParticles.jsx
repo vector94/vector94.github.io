@@ -1,12 +1,17 @@
 import { useEffect, useRef } from 'react'
+import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion'
 
 export default function BokehParticles({ intensity = 1 }) {
   const canvasRef = useRef()
+  const reducedMotion = usePrefersReducedMotion()
 
   useEffect(() => {
+    if (reducedMotion) return
+
     const canvas = canvasRef.current
     const ctx = canvas.getContext('2d')
     let raf
+    let visible = true
 
     function resize() {
       canvas.width  = canvas.offsetWidth
@@ -14,6 +19,14 @@ export default function BokehParticles({ intensity = 1 }) {
     }
     resize()
     window.addEventListener('resize', resize)
+
+    // Each section mounts its own canvas + loop — stop drawing while
+    // scrolled out of view so idle sections don't burn CPU forever.
+    const io = new IntersectionObserver(
+      ([entry]) => { visible = entry.isIntersecting },
+      { threshold: 0 }
+    )
+    io.observe(canvas)
 
     const orbs = Array.from({ length: 20 }, () => ({
       x:       Math.random() * canvas.width,
@@ -34,6 +47,8 @@ export default function BokehParticles({ intensity = 1 }) {
     }
 
     function draw() {
+      if (!visible) { raf = requestAnimationFrame(draw); return }
+
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
       orbs.forEach(orb => {
@@ -62,8 +77,14 @@ export default function BokehParticles({ intensity = 1 }) {
     }
     draw()
 
-    return () => { cancelAnimationFrame(raf); window.removeEventListener('resize', resize) }
-  }, [])
+    return () => {
+      cancelAnimationFrame(raf)
+      window.removeEventListener('resize', resize)
+      io.disconnect()
+    }
+  }, [reducedMotion])
+
+  if (reducedMotion) return null
 
   return <canvas ref={canvasRef} className="section-canvas-bg" />
 }
