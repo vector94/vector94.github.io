@@ -3,7 +3,7 @@ export const SKILLS = [
     icon: 'fa-server',
     title: 'Backend & Cloud',
     accent: 'var(--accent-1)',
-    tags: ['C#', 'Python', '.NET Core', 'ASP.NET Core', 'FastAPI', 'EF Core', 'Dapper', 'SQLAlchemy', 'AutoMapper', 'SQL Server', 'PostgreSQL', 'TimescaleDB', 'Redis', 'RabbitMQ', 'Azure Services', 'Docker', 'CI/CD', 'DevOps'],
+    tags: ['C#', 'Python', '.NET Core', 'ASP.NET Core', 'FastAPI', 'EF Core', 'Dapper', 'SQLAlchemy', 'AutoMapper', 'RabbitMQ', 'Azure Services', 'Docker', 'CI/CD', 'DevOps'],
   },
   {
     icon: 'fa-cogs',
@@ -22,6 +22,12 @@ export const SKILLS = [
     title: 'Competitive Programming',
     accent: 'var(--accent-2)',
     tags: ['C++', 'Data Structures', 'Algorithms', 'Dynamic Programming', 'Graph Theory', 'Codeforces', 'LeetCode'],
+  },
+  {
+    icon: 'fa-database',
+    title: 'Databases',
+    accent: 'var(--accent-1)',
+    tags: ['PostgreSQL', 'SQL Server', 'TimescaleDB', 'Redis'],
   },
   {
     icon: 'fa-code',

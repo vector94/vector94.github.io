@@ -231,7 +231,7 @@
 	width: 100%;
 }
 
-.skills-content .row:nth-child(2) {
+.skills-content .row + .row {
 	margin-top: 60px;
 }
 .skill-single:hover {
