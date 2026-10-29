@@ -13,8 +13,9 @@ export const COLUMNS = [
     icon:  'fa-briefcase',
     color: '#06b6d4',
     items: [
-      { role: 'Competitive Programmer',    org: 'NSU Problem Solver', date: 'Feb 2018 – May 2022' },
-      { role: 'Software Engineer',          org: 'Enosis Solutions',   date: 'Jan 2022 – Jul 2025' },
+      { role: 'Competitive Programmer',           org: 'NSU Problem Solver', date: 'Feb 2018 – May 2022' },
+      { role: 'Software Engineer',                org: 'Enosis Solutions',   date: 'Jan 2022 – Jul 2025' },
+      { role: 'Senior Writer, AI Training Data',  org: 'Mercor',             date: 'Oct 2026 – Present'  },
     ],
   },
   {
