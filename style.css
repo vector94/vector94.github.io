@@ -1,0 +1,47 @@
+:root {
+  color-scheme: light;
+  --text: #111;
+  --bg: #fff;
+  --muted: #555;
+  --link: #0645ad;
+  --visited: #5a3696;
+}
+
+body {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 48px 20px 64px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+}
+
+h1 {
+  font-size: 1.75em;
+  font-weight: normal;
+  margin: 0 0 0.2em;
+}
+
+h2 {
+  font-size: 1.1em;
+  margin: 2em 0 0.4em;
+}
+
+ul {
+  margin: 0;
+  padding-left: 1.25em;
+}
+
+li {
+  margin: 0.3em 0;
+}
+
+.links a + a { margin-left: 0.75em; }
+
+a { color: var(--link); }
+a:visited { color: var(--visited); }
+
+.sub,
+.muted { color: var(--muted); }
